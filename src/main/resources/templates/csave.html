@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>community_save</title>
+</head>
+<body>
+<div>
+    <h2>WRITE</h2>
+</div>
+<form action="/mboard/save" method="post" enctype="multipart/form-data">
+    <div>
+        User name <input type="text" name = "user_name" required>
+        title <input type="text" name = "title" required>
+        content <textarea type="text" name="content" cols="100" rows="50" required></textarea>
+
+
+    </div>
+    <button type="button" onclick="cancelReq()" class="btn">CANCEL</button>
+    <input class="btn" type="submit" value="SAVE">
+</form>
+</body>
+<script>
+    const cancelReq = () => {
+          console.log("Cancel button clicked");
+          location.href = "/mboard/community";
+       };
+</script>
+</html>
