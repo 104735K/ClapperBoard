@@ -2,23 +2,23 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>community</title>
+    <title>movie</title>
 </head>
 <body>
 <div>
-    <h2>COMMUNITY</h2>
+    <h2>MOVIE RECOMMENDATION</h2>
 </div>
 <div>
     <table>
         <tr>
             <th>ID</th>
-            <th>TITLE</th>
+            <th>MOVIE TITLE</th>
             <th>WRITER</th>
         </tr>
-        <tr th:each = "postDto: ${postList}">
-            <td th:text = "${postDto.user_id}"></td>
-            <td><a th:href = "@{|/mboard/community/${postDto.user_id}|}" th:text = "${postDto.title}"></a></td>
-            <td th:text ="${postDto.user_name}"></td>
+        <tr th:each = "movieDto: ${movieList}">
+            <td th:text = "${movieDto.m_id}"></td>
+            <td><a th:href = "@{|/mboard/movie/${movieDto.m_id}|}" th:text = "${movieDto.m_title}"></a></td>
+            <td th:text ="${movieDto.m_writer}"></td>
         </tr>
     </table>
 </div>
@@ -28,7 +28,7 @@
 </body>
 <script>
     const saveReq = () => {
-         location.href = "/mboard/community/save";
+         location.href = "/mboard/movie/save";
   }
     const homeReq = () => {
         location.href = "/";

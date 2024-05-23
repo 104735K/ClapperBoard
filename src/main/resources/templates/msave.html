@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>movie_save</title>
+</head>
+<body>
+<div>
+    <h2>WRITE</h2>
+</div>
+<form action="/mboard/movie/save" method="post" enctype="multipart/form-data">
+    <div>
+        WRITER <input type="text" name="m_writer" required> <br>
+        Movie Poster <input type="image" name ="m_poster"> <br>
+        Movie Title <input type="text" name = "m_title" required> <br>
+        Movie Year of release
+            <select name="m_yor" id="yearSelect" required></select> <br>
+        Movie Director <input type="text" name="m_director" required> <br>
+        Movie Actor <input type="text" name="m_actor" required> <br>
+        Movie Genre
+            <label><input type="checkbox" id="action" name="m_genre" value="액션"> 액션</label>
+            <label><input type="checkbox" id="adventure" name="m_genre" value="모험"> 모험</label>
+            <label><input type="checkbox" id="animation" name="m_genre" value="애니메이션"> 애니메이션</label>
+            <label><input type="checkbox" id="comedy" name="m_genre" value="코미디"> 코미디</label>
+            <label><input type="checkbox" id="crime" name="m_genre" value="범죄"> 범죄</label>
+            <label><input type="checkbox" id="documentary" name="m_genre" value="다큐"> 다큐</label>
+            <label><input type="checkbox" id="drama" name="m_genre" value="드라마"> 드라마</label>
+            <label><input type="checkbox" id="family" name="m_genre" value="가족"> 가족</label>
+            <label><input type="checkbox" id="fantasy" name="m_genre" value="판타지"> 판타지</label>
+            <label><input type="checkbox" id="noir" name="m_genre" value="누와르"> 누와르</label>
+            <label><input type="checkbox" id="history" name="m_genre" value="역사"> 역사</label>
+            <label><input type="checkbox" id="horror" name="m_genre" value="공포"> 공포</label>
+            <label><input type="checkbox" id="thriller" name="m_genre" value="스릴러"> 스릴러</label>
+            <label><input type="checkbox" id="musical" name="m_genre" value="뮤지컬"> 뮤지컬</label>
+            <label><input type="checkbox" id="mystery" name="m_genre" value="미스터리"> 미스터리</label>
+            <label><input type="checkbox" id="romantic" name="m_genre" value="로맨스"> 로맨스</label>
+            <label><input type="checkbox" id="scientific" name="m_genre" value="과학"> 과학</label>
+            <label><input type="checkbox" id="sports" name="m_genre" value="스포츠"> 스포츠</label>
+            <label><input type="checkbox" id="war" name="m_genre" value="전쟁"> 전쟁</label>
+            <label><input type="checkbox" id="etc" name="m_genre" value="기타"> 기타</label> <br>
+        Movie Rating <br>
+        Movie Content <br><textarea type="text" name="m_content" cols="100" rows="50" required></textarea>
+
+
+
+
+    </div>
+    <button type="button" onclick="cancelReq()" class="btn">CANCEL</button>
+    <input class="btn" type="submit" value="SAVE">
+</form>
+</body>
+<script>
+    var currentYear = new Date().getFullYear();
+    var selectElement = document.getElementById('yearSelect');
+    for (var Year = currentYear; Year >= 1900; Year--) {
+    var option = document.createElement('option');
+    option.value = Year;
+    option.textContent = Year + "년";
+    selectElement.appendChild(option);
+    }
+
+    const cancelReq = () => {
+          console.log("Cancel button clicked");
+          location.href = "/mboard/movie";
+       };
+</script>
+</html>

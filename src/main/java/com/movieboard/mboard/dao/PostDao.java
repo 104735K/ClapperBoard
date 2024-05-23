@@ -1,6 +1,6 @@
 package com.movieboard.mboard.dao;
 
-import com.movieboard.mboard.dto.PostDTO;
+import com.movieboard.mboard.dto.PostDto;
 import com.movieboard.mboard.util.DBUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -15,14 +15,14 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class PostDAO {
+public class PostDao {
     private Connection connection;
 
-    public PostDAO() throws SQLException {
+    public PostDao() throws SQLException {
         connection = DBUtil.getConnection();
     }
 
-    public void createPost(PostDTO postDTO) throws SQLException {
+    public void createPost(PostDto postDTO) throws SQLException {
         String query = "INSERT INTO posts (user_id, user_name, title, content) VALUES (?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, postDTO.getUser_id());
@@ -33,35 +33,35 @@ public class PostDAO {
         }
     }
 
-    public List<PostDTO> getAllPosts() {
-        List<PostDTO> postDTOList = new ArrayList<>();
+    public List<PostDto> getAllPosts() {
+        List<PostDto> postDtoList = new ArrayList<>();
         String query = "SELECT * FROM posts";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                PostDTO postDTO = new PostDTO(
+                PostDto postDTO = new PostDto(
                         resultSet.getInt("user_id"),
                         resultSet.getString("user_name"),
                         resultSet.getString("title"),
                         resultSet.getString("content")
                 );
-                postDTOList.add(postDTO);
+                postDtoList.add(postDTO);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return postDTOList;
+        return postDtoList;
     }
 
-    public Optional<PostDTO> getPostById(int id) throws SQLException {
+    public Optional<PostDto> getPostById(int id) throws SQLException {
         String query = "SELECT * FROM posts WHERE user_id =?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, id);
             try (ResultSet resultSet = pstmt.executeQuery()) {
                 if (resultSet.next()) {
-                    PostDTO postDTO = new PostDTO();
+                    PostDto postDTO = new PostDto();
                     postDTO.setUser_id(resultSet.getInt("user_id"));
                     postDTO.setUser_name(resultSet.getString("user_name"));
                     postDTO.setTitle(resultSet.getString("title"));
@@ -72,7 +72,7 @@ public class PostDAO {
         } return Optional.empty();
     }
 
-    public PostDTO updatePost(PostDTO postDTO) throws SQLException {
+    public PostDto updatePost(PostDto postDTO) throws SQLException {
         String query = "UPDATE posts SET user_name = ?, title = ?, content =? WHERE user_id =?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1,postDTO.getUser_name());
