@@ -1,11 +1,13 @@
 package com.movieboard.mboard.controller;
 import com.movieboard.mboard.dao.MovieDao;
 import com.movieboard.mboard.dto.MovieDto;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import com.movieboard.mboard.dao.PostDao;
 import com.movieboard.mboard.dto.PostDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -94,8 +96,27 @@ public class MboardController {
     }
 
     @PostMapping("/movie/save")
-    public String movieSave(@ModelAttribute MovieDto movieDto) throws SQLException, IOException {
+    public String movieSave(@RequestParam("m_writer") String m_writer,
+                            @RequestParam("m_poster") MultipartFile m_posterFile,
+                            @RequestParam("m_title") String m_title,
+                            @RequestParam("m_yor") int m_yor,
+                            @RequestParam("m_director") String m_director,
+                            @RequestParam("m_actor") String m_actor,
+                            @RequestParam("m_genre") String m_genre,
+                            @RequestParam("m_content") String m_content) throws SQLException, IOException {
+        byte[] m_posterBytes = m_posterFile.getBytes();
+        MovieDto movieDto =  new MovieDto();
         movieDao = new MovieDao();
+
+        movieDto.setM_writer(m_writer);
+        movieDto.setM_poster(m_posterBytes);
+        movieDto.setM_title(m_title);
+        movieDto.setM_yor(m_yor);
+        movieDto.setM_director(m_director);
+        movieDto.setM_actor(m_actor);
+        movieDto.setM_genre(m_genre);
+        movieDto.setM_content(m_content);
+
         System.out.println("MovieDto = " + movieDto);
         movieDao.createMpost(movieDto);
         return "redirect:/mboard/movie";
@@ -110,6 +131,21 @@ public class MboardController {
         } else {
             return "movie";
         }
+    }
+    @GetMapping("/movie/update/{m_id}")
+    public String updateMovieForm(@PathVariable int m_id, Model model) throws SQLException {
+        MovieDao movieDao1 = new MovieDao();
+        Optional<MovieDto> movieDto = movieDao1.getMovieById(m_id);
+        movieDto.ifPresent(dto -> model.addAttribute("updateMovie", dto));
+        return "mupdate";
+    }
+
+    @PostMapping("/movie/update")
+    public String movieUpdate(@ModelAttribute MovieDto movieDto, Model model) throws SQLException {
+        MovieDto movieDto1 = movieDao.updateMovie(movieDto);
+        if (movieDto1 != null) {
+            model.addAttribute("movie", movieDto1);
+        }             return "mdetail";
     }
 }
 

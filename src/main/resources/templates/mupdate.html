@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>movie_update</title>
+</head>
+<body>
+<form action="/mboard/movie/update" method="post" name="updateForm">
+    <input type="hidden" name ="m_id" th:value="${updateMovie.m_id}">
+    Writer <input type="text" name="m_writer" th:value="${updateMovie.m_writer}" readonly> <br>
+    Movie Title <input type="text" name="m_title" th:value="${updateMovie.m_title}" required> <br>
+    Movie Director <input type="text" name="m_director" th:value="${updateMovie.m_director}" required> <br>
+    Movie Actor <input type="text" name="m_actor" th:value="${updateMovie.m_actor}" required> <br>
+    Movie Genre
+            <label><input type="checkbox" id="action" name="m_genre" th:value="${updateMovie.m_genre}"> 액션</label>
+            <label><input type="checkbox" id="adventure" name="m_genre"  th:value="${updateMovie.m_genre}"> 모험</label>
+            <label><input type="checkbox" id="animation" name="m_genre"  th:value="${updateMovie.m_genre}"> 애니메이션</label>
+            <label><input type="checkbox" id="comedy" name="m_genre"  th:value="${updateMovie.m_genre}"> 코미디</label>
+            <label><input type="checkbox" id="crime" name="m_genre"  th:value="${updateMovie.m_genre}"> 범죄</label>
+            <label><input type="checkbox" id="documentary" name="m_genre"  th:value="${updateMovie.m_genre}"> 다큐</label>
+            <label><input type="checkbox" id="drama" name="m_genre"  th:value="${updateMovie.m_genre}"> 드라마</label>
+            <label><input type="checkbox" id="family" name="m_genre"  th:value="${updateMovie.m_genre}"> 가족</label>
+            <label><input type="checkbox" id="fantasy" name="m_genre"  th:value="${updateMovie.m_genre}"> 판타지</label>
+            <label><input type="checkbox" id="noir" name="m_genre"  th:value="${updateMovie.m_genre}"> 누와르</label>
+            <label><input type="checkbox" id="history" name="m_genre"  th:value="${updateMovie.m_genre}"> 역사</label>
+            <label><input type="checkbox" id="horror" name="m_genre"  th:value="${updateMovie.m_genre}"> 공포</label>
+            <label><input type="checkbox" id="thriller" name="m_genre"  th:value="${updateMovie.m_genre}"> 스릴러</label>
+            <label><input type="checkbox" id="musical" name="m_genre"  th:value="${updateMovie.m_genre}"> 뮤지컬</label>
+            <label><input type="checkbox" id="mystery" name="m_genre"  th:value="${updateMovie.m_genre}"> 미스터리</label>
+            <label><input type="checkbox" id="romantic" name="m_genre"  th:value="${updateMovie.m_genre}"> 로맨스</label>
+            <label><input type="checkbox" id="scientific" name="m_genre"  th:value="${updateMovie.m_genre}"> 과학</label>
+            <label><input type="checkbox" id="sports" name="m_genre"  th:value="${updateMovie.m_genre}"> 스포츠</label>
+            <label><input type="checkbox" id="war" name="m_genre"  th:value="${updateMovie.m_genre}"> 전쟁</label>
+            <label><input type="checkbox" id="etc" name="m_genre"  th:value="${updateMovie.m_genre}"> 기타</label> <br>
+    Movie Content <textarea name="m_content" cols="100" rows="50" th:text="${updateMovie.m_content}" required></textarea>
+    <button type="button" onclick="cancelReq()">CANCEL</button> <input type="submit" value="UPDATE" onclick="updateMovie()">
+</form>
+</body>
+<script th:inline="javascript">
+    const cancelReq = () => {
+          location.href = "/mboard/movie";
+       }
+</script>
+</html>

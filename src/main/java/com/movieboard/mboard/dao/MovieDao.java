@@ -28,6 +28,12 @@ public class MovieDao {
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, movieDto.getM_id());
             pstmt.setString(2, movieDto.getM_writer());
+
+            if (movieDto.getM_poster() != null) {
+                pstmt.setBytes(3, movieDto.getM_poster());
+            } else {
+                pstmt.setNull(3, Types.BLOB);
+            }
             pstmt.setString(4, movieDto.getM_title());
             pstmt.setInt(5, movieDto.getM_yor());
             pstmt.setString(6, movieDto.getM_director());
@@ -96,6 +102,29 @@ public class MovieDao {
             }
         }
         return Optional.empty();
+    }
+    public MovieDto updateMovie (MovieDto movieDto) throws SQLException {
+        String query = "UPDATE movies SET m_writer =?, m_title =?, m_yor=?, m_director=?, m_actor=?, m_genre=?, m_content=? WHERE m_id=?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, movieDto.getM_writer());
+            preparedStatement.setString(2, movieDto.getM_title());
+            preparedStatement.setInt(3, movieDto.getM_yor());
+            preparedStatement.setString(4, movieDto.getM_director());
+            preparedStatement.setString(5, movieDto.getM_actor());
+            preparedStatement.setString(6, movieDto.getM_genre());
+            preparedStatement.setString(7, movieDto.getM_content());
+            preparedStatement.setInt(8, movieDto.getM_id());
+            preparedStatement.executeUpdate();
+        }
+        return movieDto;
+    }
+
+    public void deleteMovie(int m_id) throws SQLException {
+        String query ="DELETE FROM movies WHERE m_id=?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, m_id);
+            preparedStatement.executeUpdate();
+        }
     }
 
 }

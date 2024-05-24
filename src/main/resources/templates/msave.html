@@ -11,7 +11,7 @@
 <form action="/mboard/movie/save" method="post" enctype="multipart/form-data">
     <div>
         WRITER <input type="text" name="m_writer" required> <br>
-        Movie Poster <input type="image" name ="m_poster"> <br>
+        Movie Poster <input type="file" name ="m_poster" accept="image/jpeg, image/jpg, image/png" > <br>
         Movie Title <input type="text" name = "m_title" required> <br>
         Movie Year of release
             <select name="m_yor" id="yearSelect" required></select> <br>
@@ -40,9 +40,6 @@
             <label><input type="checkbox" id="etc" name="m_genre" value="기타"> 기타</label> <br>
         Movie Rating <br>
         Movie Content <br><textarea type="text" name="m_content" cols="100" rows="50" required></textarea>
-
-
-
 
     </div>
     <button type="button" onclick="cancelReq()" class="btn">CANCEL</button>
