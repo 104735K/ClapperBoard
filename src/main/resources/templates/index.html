@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:background-image="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>home</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
 </head>
 <body>
-<div>
-    <h2><b>MOVIE BOARD</b></h2>
+<div class="container">
+<div class="left">
+    <h2 class="header"><b>Clapper Board</b></h2>
 </div>
-
-<div>
-    <b>
-        <a href="/mboard/community">COMMUNITY</a>
-        <a href="/mboard/movie">MOVIE RECOMMENDATION</a>
-        <a href="/mboard/">MOVIE RANKINGS</a>
-        <a href="/mboard/">MOVIE RESERVATION</a>
-        <a href="/mboard/notice">NOTICE</a>
-        <a href="/mboard/">QnA</a>
-    </b>
+<div class="right">
+    <div class="center">
+        <button type="button" onclick="communityReq()" class="btn">COMMUNITY</button><br>
+        <button type="button" onclick="movieReq()" class="btn">MOVIE RECOMMENDATION</button><br>
+        <button type="button" onclick="movieRankingReq()" class="btn">MOVIE RANKINGS</button><br>
+        <button type="button" onclick="movieReservationReq()" class="btn">MOVIE RESERVATION</button><br>
+        <button type="button" onclick="noticeReq()" class="btn">NOTICE</button><br>
+        <button type="button" onclick="qnaReq()" class="btn">QnA</button><br>
+    </div>
 </div>
-<hr>
+</div>
 </body>
+<script>
+    const communityReq = () => {
+          console.log("Community button clicked");
+          location.href = "/mboard/community";
+       };
+    const movieReq = () => {
+          console.log("movie button clicked");
+          location.href = "/mboard/movie";
+       };
+
+</script>
 </html>

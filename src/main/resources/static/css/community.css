@@ -1,0 +1,16 @@
+.index{font-size:20px;margin:3% 70% 1% 10%;}
+.header{font-size:30px; text-align:center;}
+.center{text-align:center}
+
+button{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;}
+button:hover {background-color:transparent; color:#cc1010; border: 1px solid black; font-size:12px; border-radius:50px;}
+.btn1{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;}
+.btn1:hover {background-color:transparent; color:#1048cc; border: 1px solid black; font-size:12px; border-radius:50px;}
+
+
+hr{width:90%; border-bottom:0.3px solid #fff ;}
+table{width:70%; margin:auto;font-size:13px; text-align:center;}
+a {text-decoration-line:none;transition: color 0.3s;}
+a:link {color:black;}
+a:visited {color:black}
+a:hover{color:#cc1010;}

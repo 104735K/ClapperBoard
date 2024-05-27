@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>datail</title>
+    <link rel="stylesheet" type="text/css" href="/css/detail.css">
+
 </head>
 <body>
-<table>
-    <tr>
-        <th>ID</th>
-        <td th:text="${post.user_id}"></td>
-    </tr>
-     <tr>
-        <th>USER_NAME</th>
-        <td th:text="${post.user_name}"></td>
-    </tr>
-    <tr>
-        <th>TITLE</th>
-        <td th:text="${post.title}"></td>
-    </tr>
-    <tr>
-        <th>CONTENTS</th>
-        <td th:text="${post.content}"></td>
-    </tr>
-</table>
-<button onclick="listReq()">목록</button>
-<button onclick="updateReq()">수정</button>
-<button onclick="deleteReq()">삭제</button>
+<div class="index">
+    <h2><a href="/">Clapper Board</a></h2>
+</div>
+<div class="header">
+    <h2>CONTENTS</h2>
+</div>
+<hr>
+<div class="container">
+<div class="padding">
+    <div class="padding1">
+        <b>ID</b><br>
+        <span th:text="${post.user_id}"></span>
+    </div>
+<br>
+    <div class="padding1">
+        <b>User Name</b><br>
+        <span th:text="${post.user_name}"></span>
+    </div>
+<br>
+    <div class="padding1">
+        <b>Title</b><br>
+        <span th:text="${post.title}"></span>
+    </div>
+<br>
+    <div class="padding2">
+        <b>Content</b><br>
+        <span th:text="${post.content}"></span>
+    </div>
+</div>
+</div>
+<div class="center">
+<button onclick="listReq()" class="btn1">LIST</button>
+<button onclick="updateReq()" class="btn2">UPDATE</button>
+<button onclick="deleteReq()">DELETE</button>
+</div>
 </body>
 <script th:inline="javascript">
 

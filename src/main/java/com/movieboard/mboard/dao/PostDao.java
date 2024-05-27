@@ -35,7 +35,7 @@ public class PostDao {
 
     public List<PostDto> getAllPosts() {
         List<PostDto> postDtoList = new ArrayList<>();
-        String query = "SELECT * FROM posts";
+        String query = "SELECT * FROM posts ORDER BY user_id DESC";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);

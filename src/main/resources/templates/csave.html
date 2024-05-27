@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>community_save</title>
+    <link rel="stylesheet" type="text/css" href="/css/csave.css">
+
 </head>
 <body>
-<div>
+<div class="index">
+    <h2><a href="/">Clapper Board</a></h2>
+</div>
+<div class="header">
     <h2>WRITE</h2>
 </div>
+<hr>
+<br>
 <form action="/mboard/community/save" method="post" enctype="multipart/form-data">
-    <div>
-        User name <input type="text" name = "user_name" required>
-        title <input type="text" name = "title" required>
-        content <textarea type="text" name="content" cols="100" rows="50" required></textarea>
-
-
+    <div class="container">
+    <div class="padding">
+        <b>User Name</b><br>
+        <input type="text" name = "user_name" class="textbox" required><br>
+        <b>Title</b><br>
+        <input type="text" name = "title" class="textbox" required><br>
+        <b>Content</b><br>
+        <textarea type="text" name="content" class="textarea" required></textarea>
     </div>
-    <button type="button" onclick="cancelReq()" class="btn">CANCEL</button>
+    </div>
+    <div class="center">
+    <button type="button" onclick="cancelReq()" class="button">CANCEL</button>
     <input class="btn" type="submit" value="SAVE">
+    </div>
 </form>
 </body>
 <script>
