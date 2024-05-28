@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>movie</title>
+    <link rel="stylesheet" type="text/css" href="/css/movie.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 <body>
-<div>
+<div class="index">
+    <h2><a href="/">Clapper Board</a></h2>
+</div>
+<div class="header">
     <h2>MOVIE RECOMMENDATION</h2>
 </div>
+<div class="center">
+    <button style="color:#cc1010" type="button" onclick="communityReq()" class="btn">COMMUNITY</button>
+    <button type="button" onclick="movieReq()" class="btn">MOVIE RECOMMENDATION</button>
+    <button type="button" onclick="movieRankingReq()" class="btn">MOVIE RANKINGS</button>
+    <button type="button" onclick="movieReservationReq()" class="btn">MOVIE RESERVATION</button>
+    <button type="button" onclick="noticeReq()" class="btn">NOTICE</button>
+    <button type="button" onclick="qnaReq()" class="btn">QnA</button>
+</div>
+<hr>
 <div>
     <table>
         <tr>
@@ -22,16 +38,13 @@
         </tr>
     </table>
 </div>
-<div>
-    <button onclick="saveReq()" class="btn">WRITE</button>
-    <button onclick="homeReq()" class="btn">HOME</button></div>
+<hr>
+<div class="center">
+    <button onclick="saveReq()" class="btn1">WRITE</button>
 </body>
 <script>
     const saveReq = () => {
          location.href = "/mboard/movie/save";
   }
-    const homeReq = () => {
-        location.href = "/";
-    }
 </script>
 </html>

@@ -3,15 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>movie_update</title>
+    <link rel="stylesheet" type="text/css" href="/css/mupdate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 <body>
-<form action="/mboard/movie/update" method="post" name="updateForm">
-    <input type="hidden" name ="m_id" th:value="${updateMovie.m_id}">
-    Writer <input type="text" name="m_writer" th:value="${updateMovie.m_writer}" readonly> <br>
-    Movie Title <input type="text" name="m_title" th:value="${updateMovie.m_title}" required> <br>
-    Movie Director <input type="text" name="m_director" th:value="${updateMovie.m_director}" required> <br>
-    Movie Actor <input type="text" name="m_actor" th:value="${updateMovie.m_actor}" required> <br>
-    Movie Genre
+<div class ="index">
+    <h2><a href="/">Clapper Board</a></h2>
+</div>
+<div class ="header">
+    <h2>UPDATE</h2>
+</div>
+<hr>
+<br>
+<form action="/mboard/movie/update" method="post" name="mupdateForm" onsubmit="return validateGenre();">
+    <div class="container">
+    <div class="padding">
+    <div class="padding3">
+        <div class="padding1">
+            <input type="hidden" name ="m_id" th:value="${updateMovie.m_id}">
+            <b>Writer</b><br>
+        <input type="text" name="m_writer" th:value="${updateMovie.m_writer}" class="textbox0" readonly> <br>
+        </div>
+        <div class="padding2">
+        <b>Pass</b><br>
+        <input type="password" name="password" id="m_pass" class="textbox0"> <br>
+        </div>
+    </div>
+    <div class="padding3">
+        <div>
+        <b>Movie Poster</b><br>
+        <label for="file" class="filebox">SELECT FILE</label>
+        <input type="file" name ="m_poster" accept="image/jpeg, image/jpg, image/png" id="file"><br>
+        </div>
+        <div>
+        <b>Movie Title</b><br>
+        <input type="text" name="m_title" th:value="${updateMovie.m_title}"  class="textbox" required> <br>
+        </div>
+        <div>
+        <b>Movie Year of release</b><br>
+        <select name="m_yor" id="yearSelect" required></select> <br>
+        </div>
+    </div>
+    <div class="padding3">
+        <div class="padding1">
+        <b>Movie Director</b><br>
+        <input type="text" name="m_director" th:value="${updateMovie.m_director}" class="textbox0" required> <br>
+        </div>
+        <div class="padding2">
+        <b>Movie Actor</b><br>
+        <input type="text" name="m_actor" th:value="${updateMovie.m_actor}" class="textbox0" required> <br>
+        </div>
+    </div>
+    <br>
+    <b>Movie Genre</b><br>
+        <div class="padding4">
             <label><input type="checkbox" id="action" name="m_genre" th:value="${updateMovie.m_genre}"> 액션</label>
             <label><input type="checkbox" id="adventure" name="m_genre"  th:value="${updateMovie.m_genre}"> 모험</label>
             <label><input type="checkbox" id="animation" name="m_genre"  th:value="${updateMovie.m_genre}"> 애니메이션</label>
@@ -21,7 +68,7 @@
             <label><input type="checkbox" id="drama" name="m_genre"  th:value="${updateMovie.m_genre}"> 드라마</label>
             <label><input type="checkbox" id="family" name="m_genre"  th:value="${updateMovie.m_genre}"> 가족</label>
             <label><input type="checkbox" id="fantasy" name="m_genre"  th:value="${updateMovie.m_genre}"> 판타지</label>
-            <label><input type="checkbox" id="noir" name="m_genre"  th:value="${updateMovie.m_genre}"> 누와르</label>
+            <label><input type="checkbox" id="noir" name="m_genre"  th:value="${updateMovie.m_genre}"> 누와르</label><br>
             <label><input type="checkbox" id="history" name="m_genre"  th:value="${updateMovie.m_genre}"> 역사</label>
             <label><input type="checkbox" id="horror" name="m_genre"  th:value="${updateMovie.m_genre}"> 공포</label>
             <label><input type="checkbox" id="thriller" name="m_genre"  th:value="${updateMovie.m_genre}"> 스릴러</label>
@@ -32,13 +79,69 @@
             <label><input type="checkbox" id="sports" name="m_genre"  th:value="${updateMovie.m_genre}"> 스포츠</label>
             <label><input type="checkbox" id="war" name="m_genre"  th:value="${updateMovie.m_genre}"> 전쟁</label>
             <label><input type="checkbox" id="etc" name="m_genre"  th:value="${updateMovie.m_genre}"> 기타</label> <br>
-    Movie Content <textarea name="m_content" cols="100" rows="50" th:text="${updateMovie.m_content}" required></textarea>
-    <button type="button" onclick="cancelReq()">CANCEL</button> <input type="submit" value="UPDATE" onclick="updateMovie()">
+    </div>
+    <br>
+    <b>Movie Rating</b><br>
+    <div class="padding5">
+        <input type="radio" id="star5" name="rating" value="5" required>
+        <label for="star5" title="5 stars">★★★★★</label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4" title="4 stars">★★★★</label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3" title="3 stars">★★★</label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2" title="2 stars">★★</label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1" title="1 star">★</label> <br>
+    </div>
+    <br>
+    <b>Movie Content</b><br>
+    <textarea name="m_content" class="textarea" th:text="${updateMovie.m_content}" required></textarea>
+    </div>
+    </div>
+    <div class="bm">
+    <div class="center">
+    <button type="button" onclick="cancelReq()">CANCEL</button> <input class="btn" type="submit" value="UPDATE" onclick="return updateMovie()">
+    </div>
+    </div>
 </form>
 </body>
 <script th:inline="javascript">
     const cancelReq = () => {
           location.href = "/mboard/movie";
        }
+     var currentYear = new Date().getFullYear();
+    var selectElement = document.getElementById('yearSelect');
+    for (var Year = currentYear; Year >= 1900; Year--) {
+    var option = document.createElement('option');
+    option.value = Year;
+    option.textContent = Year + "년";
+    selectElement.appendChild(option);
+    }
+    const updateMovie = () => {
+     const pass = /*[[${updateMovie.m_pass}]]*/;
+     const inputPass = document.getElementById("m_pass").value;
+     if (pass !== inputPass) {
+       alert("비밀번호가 일치하지 않습니다.");
+       return false;
+     } else {
+        return true;
+     }
+    }
+    function validateGenre() {
+        var checkboxes = document.getElementsByName('m_genre');
+        var isChecked = false;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                isChecked = true;
+                break;
+            }
+        }
+        if (!isChecked) {
+            alert('장르를 선택해 주세요.');
+            return false;
+        }
+        return true;
+    }
 </script>
 </html>

@@ -23,12 +23,13 @@ public class PostDao {
     }
 
     public void createPost(PostDto postDTO) throws SQLException {
-        String query = "INSERT INTO posts (user_id, user_name, title, content) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO posts (user_id, user_name, user_pass, title, content) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, postDTO.getUser_id());
             pstmt.setString(2, postDTO.getUser_name());
-            pstmt.setString(3, postDTO.getTitle());
-            pstmt.setString(4, postDTO.getContent());
+            pstmt.setString(3, postDTO.getUser_pass());
+            pstmt.setString(4, postDTO.getTitle());
+            pstmt.setString(5, postDTO.getContent());
             pstmt.executeUpdate();
         }
     }
@@ -44,6 +45,7 @@ public class PostDao {
                 PostDto postDTO = new PostDto(
                         resultSet.getInt("user_id"),
                         resultSet.getString("user_name"),
+                        resultSet.getString("user_pass"),
                         resultSet.getString("title"),
                         resultSet.getString("content")
                 );
@@ -64,6 +66,7 @@ public class PostDao {
                     PostDto postDTO = new PostDto();
                     postDTO.setUser_id(resultSet.getInt("user_id"));
                     postDTO.setUser_name(resultSet.getString("user_name"));
+                    postDTO.setUser_pass(resultSet.getString("user_pass"));
                     postDTO.setTitle(resultSet.getString("title"));
                     postDTO.setContent(resultSet.getString("content"));
                     return Optional.of(postDTO);

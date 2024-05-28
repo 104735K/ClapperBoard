@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>community_save</title>
     <link rel="stylesheet" type="text/css" href="/css/csave.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="index">
@@ -14,21 +16,30 @@
     <h2>WRITE</h2>
 </div>
 <hr>
-<br>
 <form action="/mboard/community/save" method="post" enctype="multipart/form-data">
     <div class="container">
     <div class="padding">
-        <b>User Name</b><br>
-        <input type="text" name = "user_name" class="textbox" required><br>
+        <div class="padding0">
+        <div class="padding1">
+            <b>User Name</b><br>
+            <input type="text" name = "user_name" class="textbox0" required>
+        </div>
+        <div class="padding2">
+            <b>Pass</b><br>
+            <input type="password" name = "user_pass" class="textbox0" required><br>
+        </div>
+        </div>
         <b>Title</b><br>
         <input type="text" name = "title" class="textbox" required><br>
         <b>Content</b><br>
         <textarea type="text" name="content" class="textarea" required></textarea>
     </div>
     </div>
+    <div class="bm">
     <div class="center">
     <button type="button" onclick="cancelReq()" class="button">CANCEL</button>
     <input class="btn" type="submit" value="SAVE">
+    </div>
     </div>
 </form>
 </body>

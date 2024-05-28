@@ -12,6 +12,7 @@ import java.io.File;
 public class MovieDto {
     private int m_id;
     private String m_writer;
+    private String m_pass;
     private byte[] m_poster;
     private String m_title;
     private int m_yor;

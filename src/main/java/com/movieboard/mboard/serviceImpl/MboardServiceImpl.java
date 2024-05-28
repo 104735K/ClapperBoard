@@ -5,7 +5,6 @@ import com.movieboard.mboard.dao.PostDao;
 import com.movieboard.mboard.dto.MovieDto;
 import com.movieboard.mboard.dto.PostDto;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import service.MboardService;
 
 import java.io.IOException;
@@ -57,7 +56,7 @@ public  class MboardServiceImpl implements MboardService {
 
     @Override
     public void insertMovie(MovieDto movieDto) throws SQLException, IOException {
-        movieDao.createMpost(movieDto);
+        movieDao.createMovie(movieDto);
 
     }
 

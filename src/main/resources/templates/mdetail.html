@@ -3,53 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>mdetail</title>
+    <link rel="stylesheet" type="text/css" href="/css/mdetail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 <body>
-<table>
-    <tr>
-        <th>ID</th>
-        <td th:text="${movie.m_id}"></td>
-    </tr>
-    <tr>
-        <th>WRITER</th>
-        <td th:text="${movie.m_writer}"></td>
-    </tr>
-    <tr>
-        <th>MOVIE POSTER</th>
-
-    </tr>
-    <tr>
-        <th>MOVIE TITLE</th>
-        <td th:text="${movie.m_title}"></td>
-    </tr>
-    <tr>
-        <th>YEAR OF RELEASE</th>
-        <td th:text="${movie.m_yor}"></td>
-    </tr>
-    <tr>
-        <th>DIRECTOR</th>
-        <td th:text="${movie.m_director}"></td>
-    </tr>
-    <tr>
-        <th>ACTOR</th>
-        <td th:text="${movie.m_actor}"></td>
-    </tr>
-    <tr>
-        <th>GENRE</th>
-        <td th:text="${movie.m_genre}"></td>
-    </tr>
-    <tr>
-        <th>RATING</th>
-        <td th:text="${movie.m_rating}"></td>
-    </tr>
-    <tr>
-        <th>CONTENT</th>
-        <td th:text="${movie.m_content}"></td>
-    </tr>
-</table>
-<button onclick="listReq()">목록</button>
-<button onclick="updateReq()">수정</button>
-<button onclick="deleteReq()">삭제</button>
+<div class="index">
+    <h2><a href="/">Clapper Board</a></h2>
+</div>
+<div class="header">
+    <h2>CONTENTS</h2>
+</div>
+<hr>
+<div class="um"></div>
+<div class="container">
+<div class="padding">
+    <div class="padding1">
+        <div class="padding2">
+        <b>ID</b><br>
+        <span th:text="${movie.m_id}"></span>
+        </div>
+        <div class="padding3">
+        <b>WRITER</b><br>
+        <span th:text="${movie.m_writer}"></span>
+        </div>
+    </div>
+    <br>
+        <div class="padding6">
+        <b>MOVIE POSTER</b><br>
+        </div>
+<br>
+    <div class="padding1">
+        <div class="padding3">
+        <b>MOVIE TITLE</b><br>
+        <span th:text="${movie.m_title}"></span>
+        </div>
+        <div class="padding2">
+        <b>YEAR OF RELEASE</b><br>
+        <span th:text="${movie.m_yor}"></span>
+        </div>
+    </div>
+<br>
+    <div class="padding1">
+        <div class="padding4">
+        <b>DIRECTOR</b><br>
+        <span th:text="${movie.m_director}"></span>
+        </div>
+        <div class="padding4">
+        <b>ACTOR</b><br>
+        <span th:text="${movie.m_actor}"></span>
+        </div>
+    </div>
+<br>
+    <div class="padding1">
+        <div class="padding4">
+        <b>GENRE</b><br>
+        <span th:text="${movie.m_genre}"></span>
+        </div>
+        <div class="padding4">
+        <b>RATING</b><br>
+        <span th:text="${movie.m_rating}"></span>
+        </div>
+    </div>
+<br>
+    <div class="padding5">
+        <b>CONTENT</b><br>
+        <span th:text="${movie.m_content}"></span>
+    </div>
+</div>
+</div>
+<div class="bm"></div>
+<div class="center">
+<button onclick="listReq()" class="btn1">LIST</button>
+<button onclick="updateReq()" class="btn2">UPDATE</button>
+<button onclick="deleteReq()">DELETE</button>
+</div>
+<div class="bm"></div>
 </body>
 <script>
     const listReq = () => {
@@ -66,5 +96,6 @@
         const id = [[${movie.m_id}]];
         location.href = "/mboard/movie/delete/" + id;
     }
+
 </script>
 </html>

@@ -3,19 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>update</title>
+    <link rel="stylesheet" type="text/css" href="/css/update.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="index">
+    <h2><a href="/">Clapper Board</a></h2>
+</div>
+<div class="header">
+    <h2>UPDATE</h2>
+</div>
+<hr>
 <form action="/mboard/community/update" method="post" name="updateForm">
-   <input type="hidden" name ="user_id" th:value="${updatePost.user_id}">
-    user_name <input type="text" name="user_name" th:value="${updatePost.user_name}" readonly> <br>
-    title <input type="text" name="title" th:value="${updatePost.title}" required> <br>
-    content <textarea name="content" cols="100" rows="50" th:text="${updatePost.content}" required></textarea>
-    <button type="button" onclick="cancelReq()">CANCEL</button> <input type="submit" value="UPDATE" onclick="updatePost()">
+    <div class="container">
+    <div class="padding">
+            <div class="padding0">
+            <div class="padding1">
+                <input type="hidden" name ="user_id" th:value="${updatePost.user_id}">
+                <b>User Name</b><br>
+                <input type="text" name="user_name" class="textbox0" th:value="${updatePost.user_name}" readonly> <br>
+            </div>
+            <div class="padding2">
+                <b>Pass</b><br>
+                <input type="password" name="password" id="user_pass" class="textbox0"><br>
+            </div>
+            </div>
+                <b>Title</b><br>
+                <input type="text" name="title" class="textbox" th:value="${updatePost.title}" required> <br>
+                <b>Content</b><br>
+                <textarea  type="text"  name="content" class="textarea" th:text="${updatePost.content}" required></textarea>
+            </div>
+        </div>
+        <div class="bm">
+            <div class="center">
+    <button type="button" onclick="cancelReq()">CANCEL</button> <input class="btn" type="submit" value="UPDATE" onclick="return updatePost()">
+            </div>
+        </div>
+    </div>
 </form>
 </body>
 <script th:inline="javascript">
     const cancelReq = () => {
-          location.href = "/mboard/community";
-       }
+       location.href = "/mboard/community";
+    }
+    const updatePost = () => {
+     const pass = /*[[${updatePost.user_pass}]]*/;
+     const inputPass = document.getElementById("user_pass").value;
+     if (pass !== inputPass) {
+       alert("비밀번호가 일치하지 않습니다.");
+       return false;
+     } else {
+        return true;
+     }
+    }
 </script>
 </html>

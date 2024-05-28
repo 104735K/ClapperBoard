@@ -23,24 +23,25 @@ public class MovieDao {
         connection = DBUtil.getConnection();
     }
 
-    public void createMpost(MovieDto movieDto) throws SQLException, IOException {
-        String query = "INSERT INTO movies (m_id, m_writer, m_poster, m_title, m_yor, m_director, m_actor, m_genre, m_rating, m_content) VALUES (?, ?,?,?,?,?,?,?,?,?)";
+    public void createMovie(MovieDto movieDto) throws SQLException, IOException {
+        String query = "INSERT INTO movies (m_id, m_writer, m_pass, m_poster, m_title, m_yor, m_director, m_actor, m_genre, m_rating, m_content) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, movieDto.getM_id());
             pstmt.setString(2, movieDto.getM_writer());
+            pstmt.setString(3,movieDto.getM_pass());
 
             if (movieDto.getM_poster() != null) {
-                pstmt.setBytes(3, movieDto.getM_poster());
+                pstmt.setBytes(4, movieDto.getM_poster());
             } else {
-                pstmt.setNull(3, Types.BLOB);
+                pstmt.setNull(4, Types.BLOB);
             }
-            pstmt.setString(4, movieDto.getM_title());
-            pstmt.setInt(5, movieDto.getM_yor());
-            pstmt.setString(6, movieDto.getM_director());
-            pstmt.setString(7, movieDto.getM_actor());
-            pstmt.setString(8, movieDto.getM_genre());
-            pstmt.setInt(9, movieDto.getM_rating());
-            pstmt.setString(10, movieDto.getM_content());
+            pstmt.setString(5, movieDto.getM_title());
+            pstmt.setInt(6, movieDto.getM_yor());
+            pstmt.setString(7, movieDto.getM_director());
+            pstmt.setString(8, movieDto.getM_actor());
+            pstmt.setString(9, movieDto.getM_genre());
+            pstmt.setInt(10, movieDto.getM_rating());
+            pstmt.setString(11, movieDto.getM_content());
             pstmt.executeUpdate();
 
         }
@@ -61,6 +62,7 @@ public class MovieDao {
                 MovieDto movieDto = new MovieDto(
                         resultSet.getInt("m_id"),
                         resultSet.getString("m_writer"),
+                        resultSet.getString("m_pass"),
                         m_posterBytes,
                         resultSet.getString("m_title"),
                         resultSet.getInt("m_yor"),
@@ -88,6 +90,7 @@ public class MovieDao {
                     MovieDto movieDto = new MovieDto();
                     movieDto.setM_id(resultSet.getInt("m_id"));
                     movieDto.setM_writer(resultSet.getString("m_writer"));
+                    movieDto.setM_pass(resultSet.getString("m_pass"));
                     movieDto.setM_poster(resultSet.getBytes("m_poster"));
                     movieDto.setM_title(resultSet.getString("m_title"));
                     movieDto.setM_yor(resultSet.getInt("m_yor"));

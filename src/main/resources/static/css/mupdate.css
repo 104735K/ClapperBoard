@@ -1,0 +1,36 @@
+.index {font-size:20px;margin:3% 70% 1% 10%;}
+.header{font-size:30px; text-align:center;font-family: "Poetsen One", sans-serif;}
+.center{text-align:center;}
+
+a {text-decoration-line:none;transition: color 0.3s;font-family: "Poetsen One", sans-serif;}
+a:link {color:black;}
+a:visited {color:black}
+a:hover{color:#cc1010;}
+hr{width:90%; border-bottom:0.3px solid #fff ;}
+
+form{text-align:center; font-size:15px; margin:5px auto;}
+.textbox {width:300px; margin:5px auto; font-size:13px; text-align:center;border-radius: 20px; border: 1px solid #ccc; padding: 5px;}
+.textbox0 {width:250px; margin:5px auto; font-size:13px; text-align:center;border-radius: 20px; border: 1px solid #ccc; padding: 5px;}
+.textarea {width:750px; height:500px; margin:5px auto;font-size:13px;border-radius: 20px; border: 1px solid #ccc; padding: 5px;}
+
+select{width:150px; height:25px;border-radius:50px;font-size:12px;text-align:center;border: 1px solid #ccc}
+
+button{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
+button:hover {background-color:transparent; color:#cc1010; border: 1px solid black; font-size:12px; border-radius:50px;}
+.btn{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
+.btn:hover {background-color:transparent; color:#0444d9; border: 1px solid black; font-size:12px; border-radius:50px;}
+
+input[type="file"] {position: absolute;width: 0;height: 0;padding: 0;overflow: hidden;border: 0;}
+.filebox {display: inline-block;padding: 5px 50px;border-radius:50px;font-size:12px;text-align:center;border: 1px solid #ccc}
+.filebox:hover {color:#0444d9;}
+
+.container {display: flex;justify-content: center;align-items: center; height: 1000px; font-size:15px;}
+.padding {padding : 20px; width:800px; height:1000px;  box-sizing: border-box; align-items:center; border: 1px solid #ccc; border-radius:20px; text-align:center;}
+
+.padding1 {padding : 10px; width:300px; height:70px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;flex: 1; max-width: 350px; margin: 0 3px 0 10px;}
+.padding2 {padding : 10px; width:300px; height:70px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;flex: 1; max-width: 350px; margin: 0 3px;}
+.padding3 {padding : 20px; width:750px; height:60px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;display: flex; justify-content: space-between; margin:0 0 10px 0;}
+.padding4 {padding : 10px; width:750px; height:65px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc ; border-radius:20px; text-align:center; flex :1;}
+.padding5 {padding : 10px; width:750px; height:40px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc ; border-radius:20px; text-align:center; flex :1;}
+
+.bm{margin:40px 0 0 0;}

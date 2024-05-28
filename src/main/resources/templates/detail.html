@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>datail</title>
     <link rel="stylesheet" type="text/css" href="/css/detail.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="index">
@@ -17,21 +19,22 @@
 <div class="container">
 <div class="padding">
     <div class="padding1">
+    <div class="padding2">
         <b>ID</b><br>
         <span th:text="${post.user_id}"></span>
     </div>
-<br>
-    <div class="padding1">
+    <div class="padding3">
         <b>User Name</b><br>
         <span th:text="${post.user_name}"></span>
     </div>
+    </div>
 <br>
-    <div class="padding1">
+    <div class="padding4">
         <b>Title</b><br>
         <span th:text="${post.title}"></span>
     </div>
 <br>
-    <div class="padding2">
+    <div class="padding5">
         <b>Content</b><br>
         <span th:text="${post.content}"></span>
     </div>

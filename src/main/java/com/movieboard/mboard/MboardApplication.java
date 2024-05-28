@@ -1,4 +1,4 @@
-package com.movieboard.mboard;
+package com.movieboard.mboard;6th commitment
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

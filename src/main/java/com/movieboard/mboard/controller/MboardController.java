@@ -1,10 +1,7 @@
 package com.movieboard.mboard.controller;
 import com.movieboard.mboard.dao.MovieDao;
 import com.movieboard.mboard.dto.MovieDto;
-import com.movieboard.mboard.serviceImpl.MboardServiceImpl;
-import io.micrometer.core.instrument.MockClock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration;
 import org.springframework.ui.Model;
 import com.movieboard.mboard.dao.PostDao;
 import com.movieboard.mboard.dto.PostDto;
@@ -15,7 +12,6 @@ import service.MboardService;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,8 +91,31 @@ public class MboardController {
     }
 
     @PostMapping("/movie/save")
-    public String movieSave(@RequestBody MovieDto movieDto) throws SQLException, IOException {
-        mboardService.updateMovie(movieDto);
+    public String movieSave(@RequestParam("m_writer") String m_writer,
+                            @RequestParam("m_pass") String m_pass,
+                            @RequestParam("m_poster") MultipartFile m_poster,
+                            @RequestParam("m_title") String m_title,
+                            @RequestParam("m_yor") int m_yor,
+                            @RequestParam("m_director") String m_director,
+                            @RequestParam("m_actor") String m_actor,
+                            @RequestParam("m_genre") String m_genre,
+                            @RequestParam("m_rating") int m_rating,
+                            @RequestParam("m_content") String m_content) throws SQLException, IOException {
+        byte[] posterBytes = m_poster.getBytes();
+
+        MovieDto movieDto = new MovieDto();
+        movieDto.setM_writer(m_writer);
+        movieDto.setM_pass(m_pass);
+        movieDto.setM_poster(posterBytes);
+        movieDto.setM_title(m_title);
+        movieDto.setM_yor(m_yor);
+        movieDto.setM_director(m_director);
+        movieDto.setM_actor(m_actor);
+        movieDto.setM_genre(m_genre);
+        movieDto.setM_rating(m_rating);
+        movieDto.setM_content(m_content);
+
+        mboardService.insertMovie(movieDto);
         return "redirect:/mboard/movie";
     }
     @GetMapping("/movie/{m_id}")

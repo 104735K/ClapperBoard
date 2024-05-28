@@ -3,7 +3,13 @@
 .center{text-align:center; font-size:15px;}
 
 span{font-size:13px;}
+
 hr{width:90%; border-bottom:0.3px solid #fff ;}
+a {text-decoration-line:none;transition: color 0.3s;font-family: "Poetsen One", sans-serif;}
+a:link {color:black;}
+a:visited {color:black}
+a:hover{color:#cc1010;}
+
 button{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
 button:hover {background-color:transparent; color:#cc1010; border: 1px solid black; font-size:12px; border-radius:50px;}
 .btn1{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;}
@@ -11,18 +17,16 @@ button:hover {background-color:transparent; color:#cc1010; border: 1px solid bla
 .btn2{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;}
 .btn2:hover {background-color:transparent; color:#0444d9; border: 1px solid black; font-size:12px; border-radius:50px;}
 
+.container {display: flex;justify-content: center;align-items: center; height: 1000px; font-size:15px;}
+.padding {padding : 20px; width:800px; height:1200px;  box-sizing: border-box; align-items:center; border:none; border-radius:20px; text-align:center;}
 
-a {text-decoration-line:none;transition: color 0.3s;font-family: "Poetsen One", sans-serif;}
-a:link {color:black;}
-a:visited {color:black}
-a:hover{color:#cc1010;}
-
-.container {display: flex;justify-content: center;align-items: center; height: 900px; font-size:15px;}
-.padding {padding : 20px; width:800px; height:800px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;}
-
-.padding1 {padding : 20px; width:750px; height:60px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;display: flex; justify-content: space-between; margin:0 0 10px 0;}
+.padding1 {padding : 10px; width:750px; height:60px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;display: flex; justify-content: space-between; margin:0 0 10px 0;}
 .padding2 {padding : 10px; width:300px; height:70px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc; border-radius:20px; text-align:center;flex: 1; max-width: 200px; margin: 0 3px 0 10px;}
 .padding3 {padding : 10px; width:300px; height:70px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc; border-radius:20px; text-align:center;flex: 1; max-width: 500px; margin: 0 3px;}
 
-.padding4 {padding : 10px; width:700px; height:70px;  box-sizing: border-box; align-items:center; border: 1px solid #ccc; border-radius:20px; text-align:center; margin:0 0 20px 30px;}
-.padding5 {padding : 10px; width:700px; height:550px;  box-sizing: border-box; align-items:center; border: 1px solid #ccc; border-radius:20px; text-align:center; margin:0 0 20px 30px;}
+.padding4 {padding : 10px; width:300px; height:70px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc; border-radius:20px; text-align:center;flex: 1; max-width: 350px; margin: 0 3px;}
+.padding5 {padding : 10px; width:720px; height:400px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc; border-radius:20px; text-align:center;flex: 1; margin: 0 0 0 15px;}
+.padding6 {padding : 10px; width:720px; height:400px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc; border-radius:20px; text-align:center;flex: 1; margin: 0 0 0 15px;}
+
+.um{margin:150px auto;}
+.bm{margin:180px auto;}
