@@ -5,7 +5,7 @@ import com.movieboard.mboard.dao.PostDao;
 import com.movieboard.mboard.dto.MovieDto;
 import com.movieboard.mboard.dto.PostDto;
 import org.springframework.stereotype.Service;
-import service.MboardService;
+import com.movieboard.mboard.service.MboardService;
 
 import java.io.IOException;
 import java.sql.SQLException;

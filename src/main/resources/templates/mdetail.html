@@ -63,13 +63,13 @@
         </div>
         <div class="padding4">
         <b>RATING</b><br>
-        <span th:text="${movie.m_rating}"></span>
+        <span th:text="${movie.m_rating}" id="ratingStars" ></span>
         </div>
     </div>
 <br>
     <div class="padding5">
         <b>CONTENT</b><br>
-        <span th:text="${movie.m_content}"></span>
+        <pre th:text="${movie.m_content}"></pre>
     </div>
 </div>
 </div>
@@ -79,9 +79,17 @@
 <button onclick="updateReq()" class="btn2">UPDATE</button>
 <button onclick="deleteReq()">DELETE</button>
 </div>
-<div class="bm"></div>
+<div class="bm2"></div>
 </body>
 <script>
+
+    const rating = parseInt("[[${movie.m_rating}]]");
+    let stars = "";
+    for (let i = 0; i < rating; i++) {
+        stars += "★";
+    }
+    document.getElementById("ratingStars").innerText = stars;
+
     const listReq = () => {
         console.log("목록 요청");
         location.href = "/mboard/movie";

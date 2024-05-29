@@ -24,19 +24,19 @@
         <span th:text="${post.user_id}"></span>
     </div>
     <div class="padding3">
-        <b>User Name</b><br>
+        <b>USER NAME</b><br>
         <span th:text="${post.user_name}"></span>
     </div>
     </div>
 <br>
     <div class="padding4">
-        <b>Title</b><br>
+        <b>TITLE</b><br>
         <span th:text="${post.title}"></span>
     </div>
 <br>
     <div class="padding5">
-        <b>Content</b><br>
-        <span th:text="${post.content}"></span>
+        <b>CONTENT</b><br>
+        <pre th:text="${post.content}"></pre>
     </div>
 </div>
 </div>
@@ -45,6 +45,7 @@
 <button onclick="updateReq()" class="btn2">UPDATE</button>
 <button onclick="deleteReq()">DELETE</button>
 </div>
+
 </body>
 <script th:inline="javascript">
 

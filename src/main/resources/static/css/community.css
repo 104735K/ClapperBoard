@@ -5,12 +5,22 @@
 button{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
 button:hover {background-color:transparent; color:#cc1010; border: 1px solid black; font-size:12px; border-radius:50px;}
 .btn1{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;}
-.btn1:hover {background-color:transparent; color:#1048cc; border: 1px solid black; font-size:12px; border-radius:50px;}
-
+.btn1:hover {background-color:transparent; color:#0444d9; border: 1px solid black; font-size:12px; border-radius:50px;}
+.btn2{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
+.btn2:hover {background-color:transparent; color:#0444d9; border: 1px solid black; font-size:12px; border-radius:50px;}
 
 hr{width:90%; border-bottom:0.3px solid #fff ;}
-table{width:70%; margin:auto;font-size:13px; text-align:center;}
+table{width:70%; margin:auto; font-size:13px; text-align:center; font-family: 'S-CoreDream-3Light'; table-layout: fixed;}
 a {text-decoration-line:none;transition: color 0.3s;font-family: "Poetsen One", sans-serif;}
 a:link {color:black;}
 a:visited {color:black}
 a:hover{color:#cc1010;}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fs{font-family: 'S-CoreDream-3Light';}

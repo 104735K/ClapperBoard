@@ -1,4 +1,4 @@
-package service;
+package com.movieboard.mboard.service;
 
 import com.movieboard.mboard.dto.MovieDto;
 import com.movieboard.mboard.dto.PostDto;

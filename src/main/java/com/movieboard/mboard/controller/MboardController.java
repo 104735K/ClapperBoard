@@ -8,7 +8,7 @@ import com.movieboard.mboard.dto.PostDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import service.MboardService;
+import com.movieboard.mboard.service.MboardService;
 
 import java.io.IOException;
 import java.sql.SQLException;

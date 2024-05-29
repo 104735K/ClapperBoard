@@ -17,6 +17,9 @@
 </div>
 <hr>
 <br>
+<br>
+<br>
+<br>
 <form action="/mboard/movie/update" method="post" name="mupdateForm" onsubmit="return validateGenre();">
     <div class="container">
     <div class="padding">
@@ -28,7 +31,7 @@
         </div>
         <div class="padding2">
         <b>Pass</b><br>
-        <input type="password" name="password" id="m_pass" class="textbox0"> <br>
+        <input type="password" name="password" id="m_pass" class="textbox0" oninput="removeWhitespace2(this)"> <br>
         </div>
     </div>
     <div class="padding3">
@@ -39,7 +42,7 @@
         </div>
         <div>
         <b>Movie Title</b><br>
-        <input type="text" name="m_title" th:value="${updateMovie.m_title}"  class="textbox" required> <br>
+        <input type="text" name="m_title" th:value="${updateMovie.m_title}"  class="textbox" required oninput="removeWhitespace(this)"> <br>
         </div>
         <div>
         <b>Movie Year of release</b><br>
@@ -49,54 +52,54 @@
     <div class="padding3">
         <div class="padding1">
         <b>Movie Director</b><br>
-        <input type="text" name="m_director" th:value="${updateMovie.m_director}" class="textbox0" required> <br>
+        <input type="text" name="m_director" th:value="${updateMovie.m_director}" class="textbox0" required oninput="removeWhitespace(this)"> <br>
         </div>
         <div class="padding2">
         <b>Movie Actor</b><br>
-        <input type="text" name="m_actor" th:value="${updateMovie.m_actor}" class="textbox0" required> <br>
+        <input type="text" name="m_actor" th:value="${updateMovie.m_actor}" class="textbox0" required oninput="removeWhitespace(this)"> <br>
         </div>
     </div>
     <br>
     <b>Movie Genre</b><br>
         <div class="padding4">
-            <label><input type="checkbox" id="action" name="m_genre" th:value="${updateMovie.m_genre}"> 액션</label>
-            <label><input type="checkbox" id="adventure" name="m_genre"  th:value="${updateMovie.m_genre}"> 모험</label>
-            <label><input type="checkbox" id="animation" name="m_genre"  th:value="${updateMovie.m_genre}"> 애니메이션</label>
-            <label><input type="checkbox" id="comedy" name="m_genre"  th:value="${updateMovie.m_genre}"> 코미디</label>
-            <label><input type="checkbox" id="crime" name="m_genre"  th:value="${updateMovie.m_genre}"> 범죄</label>
-            <label><input type="checkbox" id="documentary" name="m_genre"  th:value="${updateMovie.m_genre}"> 다큐</label>
-            <label><input type="checkbox" id="drama" name="m_genre"  th:value="${updateMovie.m_genre}"> 드라마</label>
-            <label><input type="checkbox" id="family" name="m_genre"  th:value="${updateMovie.m_genre}"> 가족</label>
-            <label><input type="checkbox" id="fantasy" name="m_genre"  th:value="${updateMovie.m_genre}"> 판타지</label>
-            <label><input type="checkbox" id="noir" name="m_genre"  th:value="${updateMovie.m_genre}"> 누와르</label><br>
-            <label><input type="checkbox" id="history" name="m_genre"  th:value="${updateMovie.m_genre}"> 역사</label>
-            <label><input type="checkbox" id="horror" name="m_genre"  th:value="${updateMovie.m_genre}"> 공포</label>
-            <label><input type="checkbox" id="thriller" name="m_genre"  th:value="${updateMovie.m_genre}"> 스릴러</label>
-            <label><input type="checkbox" id="musical" name="m_genre"  th:value="${updateMovie.m_genre}"> 뮤지컬</label>
-            <label><input type="checkbox" id="mystery" name="m_genre"  th:value="${updateMovie.m_genre}"> 미스터리</label>
-            <label><input type="checkbox" id="romantic" name="m_genre"  th:value="${updateMovie.m_genre}"> 로맨스</label>
-            <label><input type="checkbox" id="scientific" name="m_genre"  th:value="${updateMovie.m_genre}"> 과학</label>
-            <label><input type="checkbox" id="sports" name="m_genre"  th:value="${updateMovie.m_genre}"> 스포츠</label>
-            <label><input type="checkbox" id="war" name="m_genre"  th:value="${updateMovie.m_genre}"> 전쟁</label>
-            <label><input type="checkbox" id="etc" name="m_genre"  th:value="${updateMovie.m_genre}"> 기타</label> <br>
+            <label><input type="checkbox" id="action" name="m_genre" value="액션"> 액션</label>
+            <label><input type="checkbox" id="adventure" name="m_genre"  value="모험"> 모험</label>
+            <label><input type="checkbox" id="animation" name="m_genre"  value="애니메이션"> 애니메이션</label>
+            <label><input type="checkbox" id="comedy" name="m_genre"  value="코미디"> 코미디</label>
+            <label><input type="checkbox" id="crime" name="m_genre"  value="범죄"> 범죄</label>
+            <label><input type="checkbox" id="documentary" name="m_genre"  value="다큐"> 다큐</label>
+            <label><input type="checkbox" id="drama" name="m_genre"  value="드라마"> 드라마</label>
+            <label><input type="checkbox" id="family" name="m_genre"  value="가족"> 가족</label>
+            <label><input type="checkbox" id="fantasy" name="m_genre"  value="판타지"> 판타지</label>
+            <label><input type="checkbox" id="noir" name="m_genre" value="누와르"> 누와르</label><br>
+            <label><input type="checkbox" id="history" name="m_genre"  value="역사"> 역사</label>
+            <label><input type="checkbox" id="horror" name="m_genre"  value="공포"> 공포</label>
+            <label><input type="checkbox" id="thriller" name="m_genre"  value="스릴러"> 스릴러</label>
+            <label><input type="checkbox" id="musical" name="m_genre" value="뮤지컬"> 뮤지컬</label>
+            <label><input type="checkbox" id="mystery" name="m_genre" value="미스터리"> 미스터리</label>
+            <label><input type="checkbox" id="romantic" name="m_genre"  value="로맨스"> 로맨스</label>
+            <label><input type="checkbox" id="scientific" name="m_genre"  value="과학"> 과학</label>
+            <label><input type="checkbox" id="sports" name="m_genre" value="스포츠"> 스포츠</label>
+            <label><input type="checkbox" id="war" name="m_genre"  value="전쟁"> 전쟁</label>
+            <label><input type="checkbox" id="etc" name="m_genre" value="기타"> 기타</label> <br>
     </div>
     <br>
-    <b>Movie Rating</b><br>
-    <div class="padding5">
-        <input type="radio" id="star5" name="rating" value="5" required>
-        <label for="star5" title="5 stars">★★★★★</label>
-        <input type="radio" id="star4" name="rating" value="4">
-        <label for="star4" title="4 stars">★★★★</label>
-        <input type="radio" id="star3" name="rating" value="3">
-        <label for="star3" title="3 stars">★★★</label>
-        <input type="radio" id="star2" name="rating" value="2">
-        <label for="star2" title="2 stars">★★</label>
-        <input type="radio" id="star1" name="rating" value="1">
-        <label for="star1" title="1 star">★</label> <br>
-    </div>
+        <b>Movie Rating</b><br>
+        <div class="padding5">
+            <input type="radio" id="star5" name="m_rating" value="5" th:checked="${updateMovie.m_rating == 5}" required>
+            <label for="star5" title="5 stars">★★★★★</label>
+            <input type="radio" id="star4" name="m_rating" value="4" th:checked="${updateMovie.m_rating == 4}">
+            <label for="star4" title="4 stars">★★★★</label>
+            <input type="radio" id="star3" name="m_rating" value="3" th:checked="${updateMovie.m_rating == 3}">
+            <label for="star3" title="3 stars">★★★</label>
+            <input type="radio" id="star2" name="m_rating" value="2" th:checked="${updateMovie.m_rating == 2}">
+            <label for="star2" title="2 stars">★★</label>
+            <input type="radio" id="star1" name="m_rating" value="1" th:checked="${updateMovie.m_rating == 1}">
+            <label for="star1" title="1 star">★</label> <br>
+        </div>
     <br>
     <b>Movie Content</b><br>
-    <textarea name="m_content" class="textarea" th:text="${updateMovie.m_content}" required></textarea>
+    <textarea name="m_content" wrap="hard" class="textarea" th:text="${updateMovie.m_content}" required oninput="removeWhitespace(this)"></textarea>
     </div>
     </div>
     <div class="bm">
@@ -107,10 +110,12 @@
 </form>
 </body>
 <script th:inline="javascript">
+
     const cancelReq = () => {
           location.href = "/mboard/movie";
        }
-     var currentYear = new Date().getFullYear();
+
+    var currentYear = new Date().getFullYear();
     var selectElement = document.getElementById('yearSelect');
     for (var Year = currentYear; Year >= 1900; Year--) {
     var option = document.createElement('option');
@@ -118,30 +123,49 @@
     option.textContent = Year + "년";
     selectElement.appendChild(option);
     }
+
     const updateMovie = () => {
      const pass = /*[[${updateMovie.m_pass}]]*/;
      const inputPass = document.getElementById("m_pass").value;
+
      if (pass !== inputPass) {
        alert("비밀번호가 일치하지 않습니다.");
        return false;
      } else {
         return true;
      }
-    }
-    function validateGenre() {
-        var checkboxes = document.getElementsByName('m_genre');
-        var isChecked = false;
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                isChecked = true;
-                break;
+     }
+
+   function validateGenre() {
+    var checkboxes = document.getElementsByName('m_genre');
+    var checkedCount = 0;
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            checkedCount++;
+            if (checkedCount > 4) {
+                alert('장르는 최대 4개 선택할 수 있습니다.');
+                checkboxes[i].checked = false;
+                return false;
             }
         }
-        if (!isChecked) {
-            alert('장르를 선택해 주세요.');
-            return false;
-        }
-        return true;
     }
+    if (checkedCount === 0) {
+        alert('장르를 선택해 주세요.');
+        return false;
+    }
+    return true;
+}
+
+    const removeWhitespace = (element) => {
+        if (element.value.trim() === "") {
+         element.value = "";
+         alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+    }
+};
+
+     function removeWhitespace2(input) {
+    input.value = input.value.trim();
+}
+
 </script>
 </html>

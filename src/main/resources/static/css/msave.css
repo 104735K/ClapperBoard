@@ -8,12 +8,12 @@ a:visited {color:black}
 a:hover{color:#cc1010;}
 hr{width:90%; border-bottom:0.3px solid #fff ;}
 
-form{text-align:center; font-size:15px; margin:5px auto;}
-.textbox {width:300px; margin:5px auto; font-size:13px; text-align:center;border-radius: 20px; border: 1px solid #ccc; padding: 5px;}
-.textbox0 {width:250px; margin:5px auto; font-size:13px; text-align:center;border-radius: 20px; border: 1px solid #ccc; padding: 5px;}
-.textarea {width:750px; height:500px; margin:5px auto;font-size:13px;border-radius: 20px; border: 1px solid #ccc; padding: 5px;}
+form{text-align:center; font-size:15px; margin:5px auto;font-family: 'S-CoreDream-3Light';}
+.textbox {width:300px; margin:5px auto; font-size:13px; text-align:center;border-radius: 20px; border: 1px solid #ccc; padding: 5px;font-family: 'S-CoreDream-3Light';}
+.textbox0 {width:250px; margin:5px auto; font-size:13px; text-align:center;border-radius: 20px; border: 1px solid #ccc; padding: 5px;font-family: 'S-CoreDream-3Light';}
+.textarea {width:750px; height:500px; margin:5px auto;font-size:13px;border-radius: 20px; border: 1px solid #ccc; padding: 5px;font-family: 'S-CoreDream-3Light';}
 
-select{width:150px; height:25px;border-radius:50px;font-size:12px;text-align:center;border: 1px solid #ccc}
+select{width:150px; height:25px;border-radius:50px;font-size:12px;text-align:center;border: 1px solid #ccc; font-family: 'S-CoreDream-3Light';}
 
 button{width:200px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
 button:hover {background-color:transparent; color:#cc1010; border: 1px solid black; font-size:12px; border-radius:50px;}
@@ -30,8 +30,14 @@ input[type="file"] {position: absolute;width: 0;height: 0;padding: 0;overflow: h
 .padding1 {padding : 10px; width:300px; height:70px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;flex: 1; max-width: 350px; margin: 0 3px 0 10px;}
 .padding2 {padding : 10px; width:300px; height:70px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;flex: 1; max-width: 350px; margin: 0 3px;}
 .padding3 {padding : 20px; width:750px; height:60px;  box-sizing: border-box; align-items:center;border: none; border-radius:20px; text-align:center;display: flex; justify-content: space-between; margin:0 0 10px 0;}
-.padding4 {padding : 10px; width:750px; height:65px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc ; border-radius:20px; text-align:center; flex :1;}
+.padding4 {padding : 10px; width:750px; height:65px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc ; border-radius:20px; text-align:center; flex :1; font-size:13px;}
 .padding5 {padding : 10px; width:750px; height:40px;  box-sizing: border-box; align-items:center;border: 1px solid #ccc ; border-radius:20px; text-align:center; flex :1;}
 
-.bm{margin:40px 0 0 0;}
+.bm{margin:90px 0 120px 0;}
 
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

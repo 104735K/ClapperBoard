@@ -16,23 +16,23 @@
     <h2>WRITE</h2>
 </div>
 <hr>
-<form action="/mboard/community/save" method="post" enctype="multipart/form-data">
+<form action="/mboard/community/save" method="post" enctype="application/x-www-form-urlencoded">
     <div class="container">
     <div class="padding">
         <div class="padding0">
         <div class="padding1">
             <b>User Name</b><br>
-            <input type="text" name = "user_name" class="textbox0" required>
+            <input type="text" name = "user_name" class="textbox0" required oninput="removeWhitespace(this)" >
         </div>
         <div class="padding2">
             <b>Pass</b><br>
-            <input type="password" name = "user_pass" class="textbox0" required><br>
+            <input type="password" name = "user_pass" class="textbox0" required oninput="removeWhitespace2(this)"><br>
         </div>
         </div>
         <b>Title</b><br>
-        <input type="text" name = "title" class="textbox" required><br>
+        <input type="text" name = "title" class="textbox" required oninput="removeWhitespace(this)"><br>
         <b>Content</b><br>
-        <textarea type="text" name="content" class="textarea" required></textarea>
+        <textarea type="text" wrap="hard" name="content" class="textarea" required oninput="removeWhitespace(this)"></textarea>
     </div>
     </div>
     <div class="bm">
@@ -48,5 +48,18 @@
           console.log("Cancel button clicked");
           location.href = "/mboard/community";
        };
+
+    const removeWhitespace = (element) => {
+        if (element.value.trim() === "") {
+         element.value = "";
+         alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+    }
+};
+    function removeWhitespace2(input) {
+    input.value = input.value.trim();
+}
+
+
+
 </script>
 </html>

@@ -49,7 +49,7 @@ public class MovieDao {
 
     public List<MovieDto> getAllMovies() {
         List<MovieDto> movieDtoList = new ArrayList<>();
-        String query = "SELECT * FROM movies";
+        String query = "SELECT * FROM movies ORDER BY m_id DESC";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();

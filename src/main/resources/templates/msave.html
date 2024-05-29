@@ -17,17 +17,20 @@
 </div>
 <hr>
 <br>
+<br>
+<br>
+<br>
 <form action="/mboard/movie/save" method="post" enctype="multipart/form-data" onsubmit="return validateGenre();">
     <div class="container">
         <div class="padding">
             <div class="padding3">
                 <div class="padding1">
                 <b>Writer</b><br>
-                <input type="text" name="m_writer" class="textbox0" required> <br>
+                <input type="text" name="m_writer" class="textbox0" required oninput="removeWhitespace(this)"> <br>
                 </div>
                 <div class="padding2">
                 <b>Pass</b><br>
-                <input type="password" name="m_pass" class="textbox0" required> <br>
+                <input type="password" name="m_pass" class="textbox0" required oninput="removeWhitespace2(this)"> <br>
                 </div>
             </div>
             <div class="padding3">
@@ -38,7 +41,7 @@
                 </div>
                 <div>
                 <b>Movie Title</b><br>
-                <input type="text" name = "m_title" class="textbox" required> <br>
+                <input type="text" name = "m_title" class="textbox" required oninput="removeWhitespace(this)"> <br>
                 </div>
                 <div>
                 <b>Movie Year of release</b><br>
@@ -48,11 +51,11 @@
             <div class="padding3">
                 <div class="padding1">
                 <b>Movie Director</b><br>
-                <input type="text" name="m_director" class="textbox0" required> <br>
+                <input type="text" name="m_director" class="textbox0" required oninput="removeWhitespace(this)"> <br>
                 </div>
                 <div class="padding2">
                 <b>Movie Actor</b><br>
-                <input type="text" name="m_actor" class="textbox0" required> <br>
+                <input type="text" name="m_actor" class="textbox0" required oninput="removeWhitespace(this)"> <br>
                 </div>
             </div>
             <br>
@@ -95,7 +98,7 @@
             </div>
             <br>
             <b>Movie Content</b><br>
-            <textarea type="text" name="m_content" class="textarea" required></textarea>
+            <textarea type="text" wrap="hard" name="m_content" class="textarea" required oninput="removeWhitespace(this)"></textarea>
         </div>
     </div>
     <div class="bm">
@@ -116,14 +119,37 @@
     selectElement.appendChild(option);
     }
 
-    function validateGenre() {
-        var checkboxes = document.querySelectorAll('input[name="m_genre"]:checked');
-        if (checkboxes.length === 0) {
-            alert('장르를 선택해 주세요.');
-            return false;
+     function validateGenre() {
+    var checkboxes = document.getElementsByName('m_genre');
+    var checkedCount = 0;
+    for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            checkedCount++;
+            if (checkedCount > 4) {
+                alert('장르는 최대 4개 선택할 수 있습니다.');
+                checkboxes[i].checked = false;
+                return false;
+            }
         }
-        return true;
     }
+    if (checkedCount === 0) {
+        alert('장르를 선택해 주세요.');
+        return false;
+    }
+    return true;
+}
+
+      const removeWhitespace = (element) => {
+        if (element.value.trim() === "") {
+         element.value = "";
+         alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+    }
+};
+
+   function removeWhitespace2(input) {
+    input.value = input.value.trim();
+}
+
 
     const cancelReq = () => {
           console.log("Cancel button clicked");
