@@ -77,17 +77,28 @@
 <div class="center">
 <button onclick="listReq()" class="btn1">LIST</button>
 <button onclick="updateReq()" class="btn2">UPDATE</button>
-<button onclick="deleteReq()">DELETE</button>
+    <button class="btn-open-modal">DELETE</button>
 </div>
 <div class="bm2"></div>
-</body>
-<script>
 
+<div class="modal">
+    <div class="modal_body">
+        <h2> 비밀번호를 입력해 주세요.</h2><br>
+        <input type="password" name="password" id="m_pass" class="textbox0" oninput="removeWhitespace2(this)">
+        <p>※ 한번 삭제된 게시글은 되돌릴 수 없습니다 ※</p>
+        <button  class="btn4" onclick="cancelReq()">CANCEL</button>
+        <button class="btn3" onclick="return deleteReq()">DELETE</button>
+    </div>
+</div>
+
+</body>
+<script th:inline="javascript">
     const rating = parseInt("[[${movie.m_rating}]]");
     let stars = "";
     for (let i = 0; i < rating; i++) {
         stars += "★";
     }
+
     document.getElementById("ratingStars").innerText = stars;
 
     const listReq = () => {
@@ -99,11 +110,32 @@
         const id = [[${movie.m_id}]];
         location.href = "/mboard/movie/update/" + id;
     }
+    const cancelReq = () => {
+        console.log("취소 요청");
+        location.href = "/mboard/movie";
+    }
     const deleteReq = () => {
         console.log("삭제 요청");
         const id = [[${movie.m_id}]];
-        location.href = "/mboard/movie/delete/" + id;
+        const pass = /*[[${movie.m_pass}]]*/;
+        const inputPass = document.getElementById("m_pass").value;
+        if (pass !== inputPass) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return false;
+        } else {
+        return location.href = "/mboard/movie/delete/" + id;
     }
+}
 
+    const modal = document.querySelector('.modal');
+        const btnOpenModal=document.querySelector('.btn-open-modal');
+
+        btnOpenModal.addEventListener("click", ()=>{
+        modal.style.display="flex";
+        });
+
+          function removeWhitespace2(input) {
+          input.value = input.value.trim();
+}
 </script>
 </html>
