@@ -19,6 +19,8 @@ public class MovieDto {
     private String m_director;
     private String m_actor;
     private String m_genre;
+    private boolean m_spo;
     private int m_rating;
     private String m_content;
+
 }

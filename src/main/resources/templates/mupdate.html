@@ -84,6 +84,17 @@
             <label><input type="checkbox" id="etc" name="m_genre" value="기타"> 기타</label> <br>
     </div>
     <br>
+        <div class="padding7">
+            <div class="padding8">
+                <b>Movie Spoiler</b><br>
+                <div class="padding6">
+                    <input type="radio" id="true" name="m_spo" value="true" th:checked="${updateMovie.m_spo == true}" required>
+                    <label for="true" title="Spoiler_O">O</label>
+                    <input type="radio" id="false" name="m_spo" value="false" th:checked="${updateMovie.m_spo == false}">
+                    <label for="false" title="Spoiler_X">X</label>
+                </div>
+            </div>
+            <div class="padding9">
         <b>Movie Rating</b><br>
         <div class="padding5">
             <input type="radio" id="star5" name="m_rating" value="5" th:checked="${updateMovie.m_rating == 5}" required>
@@ -96,6 +107,8 @@
             <label for="star2" title="2 stars">★★</label>
             <input type="radio" id="star1" name="m_rating" value="1" th:checked="${updateMovie.m_rating == 1}">
             <label for="star1" title="1 star">★</label> <br>
+        </div>
+            </div>
         </div>
     <br>
     <b>Movie Content</b><br>

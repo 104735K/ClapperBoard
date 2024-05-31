@@ -28,11 +28,16 @@
     <table>
         <tr>
             <th>ID</th>
+            <th>SPOILER</th>
             <th>MOVIE TITLE</th>
             <th>WRITER</th>
         </tr>
         <tr th:each = "movieDto: ${movieList}">
             <td th:text = "${movieDto.m_id}"></td>
+            <td>
+                <span class="spo" th:if="${movieDto.m_spo}">O</span>
+                <span th:if="${!movieDto.m_spo}">X</span>
+            </td>
             <td><a class="fs" th:href = "@{|/mboard/movie/${movieDto.m_id}|}" th:text = "${movieDto.m_title}"></a></td>
             <td th:text ="${movieDto.m_writer}"></td>
         </tr>
@@ -41,6 +46,7 @@
 <hr>
 <div class="center">
     <button onclick="saveReq()" class="btn1">WRITE</button>
+</div>
 </body>
 <script>
     const communityReq = () => {

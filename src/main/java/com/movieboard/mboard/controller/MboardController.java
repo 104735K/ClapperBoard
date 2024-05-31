@@ -1,6 +1,7 @@
 package com.movieboard.mboard.controller;
 import com.movieboard.mboard.dao.MovieDao;
 import com.movieboard.mboard.dto.MovieDto;
+import com.mysql.cj.jdbc.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.movieboard.mboard.dao.PostDao;
@@ -12,6 +13,8 @@ import com.movieboard.mboard.service.MboardService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Base64;
+import java.util.BitSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,10 +101,13 @@ public class MboardController {
                             @RequestParam("m_yor") int m_yor,
                             @RequestParam("m_director") String m_director,
                             @RequestParam("m_actor") String m_actor,
+                            @RequestParam("m_spo") String m_spo,
                             @RequestParam("m_genre") String m_genre,
                             @RequestParam("m_rating") int m_rating,
                             @RequestParam("m_content") String m_content) throws SQLException, IOException {
         byte[] posterBytes = m_poster.getBytes();
+
+        boolean is_spoiler = Boolean.parseBoolean(m_spo);
 
         MovieDto movieDto = new MovieDto();
         movieDto.setM_writer(m_writer);
@@ -112,6 +118,7 @@ public class MboardController {
         movieDto.setM_director(m_director);
         movieDto.setM_actor(m_actor);
         movieDto.setM_genre(m_genre);
+        movieDto.setM_spo(is_spoiler);
         movieDto.setM_rating(m_rating);
         movieDto.setM_content(m_content);
 
@@ -125,7 +132,8 @@ public class MboardController {
             MovieDto movieDto1 = movieDto.get();
             model.addAttribute("movie", movieDto1);
         }
-            return "mdetail";
+
+        return "mdetail";
 
     }
     @GetMapping("/movie/update/{m_id}")
