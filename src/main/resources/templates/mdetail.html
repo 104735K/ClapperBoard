@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div class="index">
@@ -32,7 +34,7 @@
     <br>
         <div class="padding6">
         <b>MOVIE POSTER</b><br>
-            <span th:text="${movie.m_poster}"></span>
+            <img id="m_img" src="" />
         </div>
 <br>
     <div class="padding1">
@@ -94,49 +96,54 @@
 
 </body>
 <script th:inline="javascript">
-    const rating = parseInt("[[${movie.m_rating}]]");
-    let stars = "";
-    for (let i = 0; i < rating; i++) {
-        stars += "★";
-    }
 
-    document.getElementById("ratingStars").innerText = stars;
+    $(function(){
+    document.getElementById("m_img").src = "data:image/png;base64,"+[[${movie.m_img}]];
+    });
 
-    const listReq = () => {
-        console.log("목록 요청");
-        location.href = "/mboard/movie";
-    }
-    const updateReq = () => {
-        console.log("수정 요청");
-        const id = [[${movie.m_id}]];
-        location.href = "/mboard/movie/update/" + id;
-    }
-    const cancelReq = () => {
-        console.log("취소 요청");
-        location.href = "/mboard/movie";
-    }
-    const deleteReq = () => {
-        console.log("삭제 요청");
-        const id = [[${movie.m_id}]];
-        const pass = /*[[${movie.m_pass}]]*/;
-        const inputPass = document.getElementById("m_pass").value;
-        if (pass !== inputPass) {
-            alert("비밀번호가 일치하지 않습니다.");
-            return false;
-        } else {
-        return location.href = "/mboard/movie/delete/" + id;
-    }
+const rating = parseInt("[[${movie.m_rating}]]");
+let stars = "";
+for (let i = 0; i < rating; i++) {
+    stars += "★";
 }
 
-    const modal = document.querySelector('.modal');
-        const btnOpenModal=document.querySelector('.btn-open-modal');
+document.getElementById("ratingStars").innerText = stars;
 
-        btnOpenModal.addEventListener("click", ()=>{
-        modal.style.display="flex";
-        });
+const listReq = () => {
+    console.log("목록 요청");
+    location.href = "/mboard/movie";
+}
+const updateReq = () => {
+    console.log("수정 요청");
+    const id = [[${movie.m_id}]];
+    location.href = "/mboard/movie/update/" + id;
+}
+const cancelReq = () => {
+    console.log("취소 요청");
+    location.href = "/mboard/movie";
+}
+const deleteReq = () => {
+    console.log("삭제 요청");
+    const id = [[${movie.m_id}]];
+    const pass = /*[[${movie.m_pass}]]*/;
+    const inputPass = document.getElementById("m_pass").value;
+    if (pass !== inputPass) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+    } else {
+    return location.href = "/mboard/movie/delete/" + id;
+}
+}
 
-          function removeWhitespace2(input) {
-          input.value = input.value.trim();
+const modal = document.querySelector('.modal');
+    const btnOpenModal=document.querySelector('.btn-open-modal');
+
+    btnOpenModal.addEventListener("click", ()=>{
+    modal.style.display="flex";
+    });
+
+      function removeWhitespace2(input) {
+      input.value = input.value.trim();
 }
 </script>
 </html>

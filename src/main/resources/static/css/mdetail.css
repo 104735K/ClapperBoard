@@ -52,3 +52,5 @@ p {font-size:10px;margin:30px 0 30px 0;}
 .btn3:hover {background-color:transparent; color:#cc1010; border: 1px solid black; font-size:10px; border-radius:50px;}
 .btn4{width:100px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:10px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
 .btn4:hover {background-color:transparent; color:#0444d9; border: 1px solid black; font-size:10px; border-radius:50px;}
+
+img {height:350px; text-align:center; margin:5px auto;}

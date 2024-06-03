@@ -1,7 +1,9 @@
 package com.movieboard.mboard.controller;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.movieboard.mboard.dao.MovieDao;
 import com.movieboard.mboard.dto.MovieDto;
 import com.mysql.cj.jdbc.Blob;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.movieboard.mboard.dao.PostDao;
@@ -13,7 +15,6 @@ import com.movieboard.mboard.service.MboardService;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Base64;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class MboardController {
     private MovieDao movieDao;
 
     private MboardService mboardService;
+
 
     @Autowired
     public MboardController(PostDao postDao, MovieDao movieDao, MboardService mboardService) {
@@ -90,6 +92,8 @@ public class MboardController {
     }
     @GetMapping("/movie/save")
     public String movieSave() {
+        System.out.println("qw");
+
         return "msave";
     }
 
@@ -130,7 +134,10 @@ public class MboardController {
         Optional<MovieDto> movieDto = mboardService.getMovieById(m_id);
         if (movieDto.isPresent()) {
             MovieDto movieDto1 = movieDto.get();
+            byte[] test = movieDto.get().getM_poster();
+            movieDto.get().setM_img(Base64.encodeBase64String(test));
             model.addAttribute("movie", movieDto1);
+
         }
 
         return "mdetail";

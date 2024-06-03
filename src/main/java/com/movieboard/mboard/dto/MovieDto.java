@@ -22,5 +22,5 @@ public class MovieDto {
     private boolean m_spo;
     private int m_rating;
     private String m_content;
-
+    private String m_img;
 }

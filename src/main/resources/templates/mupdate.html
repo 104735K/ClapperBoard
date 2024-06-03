@@ -62,26 +62,26 @@
     <br>
     <b>Movie Genre</b><br>
         <div class="padding4">
-            <label><input type="checkbox" id="action" name="m_genre" value="액션"> 액션</label>
-            <label><input type="checkbox" id="adventure" name="m_genre"  value="모험"> 모험</label>
-            <label><input type="checkbox" id="animation" name="m_genre"  value="애니메이션"> 애니메이션</label>
-            <label><input type="checkbox" id="comedy" name="m_genre"  value="코미디"> 코미디</label>
-            <label><input type="checkbox" id="crime" name="m_genre"  value="범죄"> 범죄</label>
-            <label><input type="checkbox" id="documentary" name="m_genre"  value="다큐"> 다큐</label>
-            <label><input type="checkbox" id="drama" name="m_genre"  value="드라마"> 드라마</label>
-            <label><input type="checkbox" id="family" name="m_genre"  value="가족"> 가족</label>
-            <label><input type="checkbox" id="fantasy" name="m_genre"  value="판타지"> 판타지</label>
-            <label><input type="checkbox" id="noir" name="m_genre" value="누와르"> 누와르</label><br>
-            <label><input type="checkbox" id="history" name="m_genre"  value="역사"> 역사</label>
-            <label><input type="checkbox" id="horror" name="m_genre"  value="공포"> 공포</label>
-            <label><input type="checkbox" id="thriller" name="m_genre"  value="스릴러"> 스릴러</label>
-            <label><input type="checkbox" id="musical" name="m_genre" value="뮤지컬"> 뮤지컬</label>
-            <label><input type="checkbox" id="mystery" name="m_genre" value="미스터리"> 미스터리</label>
-            <label><input type="checkbox" id="romantic" name="m_genre"  value="로맨스"> 로맨스</label>
-            <label><input type="checkbox" id="scientific" name="m_genre"  value="과학"> 과학</label>
-            <label><input type="checkbox" id="sports" name="m_genre" value="스포츠"> 스포츠</label>
-            <label><input type="checkbox" id="war" name="m_genre"  value="전쟁"> 전쟁</label>
-            <label><input type="checkbox" id="etc" name="m_genre" value="기타"> 기타</label> <br>
+            <label><input type="checkbox" id="action" name="m_genre" value="액션" th:checked="${updateMovie.m_genre == '액션'}"> 액션</label>
+            <label><input type="checkbox" id="adventure" name="m_genre"  value="모험" th:checked="${updateMovie.m_genre == '모험'}"> 모험</label>
+            <label><input type="checkbox" id="animation" name="m_genre"  value="애니메이션" th:checked="${updateMovie.m_genre == '애니메이션'}"> 애니메이션</label>
+            <label><input type="checkbox" id="comedy" name="m_genre"  value="코미디" th:checked="${updateMovie.m_genre == '코미디'}"> 코미디</label>
+            <label><input type="checkbox" id="crime" name="m_genre"  value="범죄" th:checked="${updateMovie.m_genre == '범죄'}"> 범죄</label>
+            <label><input type="checkbox" id="documentary" name="m_genre"  value="다큐" th:checked="${updateMovie.m_genre == '다큐'}"> 다큐</label>
+            <label><input type="checkbox" id="drama" name="m_genre"  value="드라마" th:checked="${updateMovie.m_genre == '드라마'}"> 드라마</label>
+            <label><input type="checkbox" id="family" name="m_genre"  value="가족" th:checked="${updateMovie.m_genre == '가족'}"> 가족</label>
+            <label><input type="checkbox" id="fantasy" name="m_genre"  value="판타지" th:checked="${updateMovie.m_genre == '판타지'}"> 판타지</label>
+            <label><input type="checkbox" id="noir" name="m_genre" value="누와르" th:checked="${updateMovie.m_genre == '누와르'}"> 누와르</label><br>
+            <label><input type="checkbox" id="history" name="m_genre"  value="역사" th:checked="${updateMovie.m_genre == '역사'}"> 역사</label>
+            <label><input type="checkbox" id="horror" name="m_genre"  value="공포" th:checked="${updateMovie.m_genre == '공포'}"> 공포</label>
+            <label><input type="checkbox" id="thriller" name="m_genre"  value="스릴러" th:checked="${updateMovie.m_genre == '스릴러'}"> 스릴러</label>
+            <label><input type="checkbox" id="musical" name="m_genre" value="뮤지컬" th:checked="${updateMovie.m_genre == '뮤지컬'}"> 뮤지컬</label>
+            <label><input type="checkbox" id="mystery" name="m_genre" value="미스터리" th:checked="${updateMovie.m_genre == '미스터리'}"> 미스터리</label>
+            <label><input type="checkbox" id="romantic" name="m_genre"  value="로맨스" th:checked="${updateMovie.m_genre == '로맨스'}"> 로맨스</label>
+            <label><input type="checkbox" id="scientific" name="m_genre" value="과학" th:checked="${updateMovie.m_genre == '과학'}"> 과학</label>
+            <label><input type="checkbox" id="sports" name="m_genre" value="스포츠" th:checked="${updateMovie.m_genre == '스포츠'}"> 스포츠</label>
+            <label><input type="checkbox" id="war" name="m_genre"  value="전쟁" th:checked="${updateMovie.m_genre == '전쟁'}"> 전쟁</label>
+            <label><input type="checkbox" id="etc" name="m_genre" value="기타" th:checked="${updateMovie.m_genre == '기타'}"> 기타</label> <br>
     </div>
     <br>
         <div class="padding7">
@@ -125,60 +125,73 @@
 <script th:inline="javascript">
 
     const cancelReq = () => {
-          location.href = "/mboard/movie";
-       }
-
-    var currentYear = new Date().getFullYear();
-    var selectElement = document.getElementById('yearSelect');
-    for (var Year = currentYear; Year >= 1900; Year--) {
-    var option = document.createElement('option');
-    option.value = Year;
-    option.textContent = Year + "년";
-    selectElement.appendChild(option);
+        location.href = "/mboard/movie";
     }
 
-    const updateMovie = () => {
-     const pass = /*[[${updateMovie.m_pass}]]*/;
-     const inputPass = document.getElementById("m_pass").value;
-
-     if (pass !== inputPass) {
-       alert("비밀번호가 일치하지 않습니다.");
-       return false;
-     } else {
-        return true;
-     }
-     }
-
-   function validateGenre() {
-    var checkboxes = document.getElementsByName('m_genre');
-    var checkedCount = 0;
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            checkedCount++;
-            if (checkedCount > 4) {
-                alert('장르는 최대 4개 선택할 수 있습니다.');
-                checkboxes[i].checked = false;
-                return false;
-            }
+    function initializeYearSelect() {
+        var currentYear = new Date().getFullYear();
+        var selectElement = document.getElementById('yearSelect');
+        for (var Year = currentYear; Year >= 1900; Year--) {
+            var option = document.createElement('option');
+            option.value = Year;
+            option.textContent = Year + "년";
+            selectElement.appendChild(option);
         }
     }
-    if (checkedCount === 0) {
-        alert('장르를 선택해 주세요.');
-        return false;
+    initializeYearSelect();
+
+    const updateMovie = () => {
+        const pass = /*[[${updateMovie.m_pass}]]*/;
+        const inputPass = document.getElementById("m_pass").value;
+            if (pass !== inputPass) {
+                alert("비밀번호가 일치하지 않습니다.");
+                return false;
+                } else {
+                    return true;
+                    }
+                }
+
+    function validateGenre() {
+        var checkboxes = document.getElementsByName('m_genre');
+        var checkedCount = 0;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedCount++;
+                if (checkedCount > 4) {
+                    alert('장르는 최대 4개 선택할 수 있습니다.');
+                    checkboxes[i].checked = false;
+                    return false;
+                }
+            }
+        }
+        if (checkedCount === 0) {
+            alert('장르를 선택해 주세요.');
+            return false;
+        }
+        return true;
     }
-    return true;
-}
 
     const removeWhitespace = (element) => {
         if (element.value.trim() === "") {
-         element.value = "";
-         alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+            element.value = "";
+            alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+        }
+    };
+
+    function removeWhitespace2(input) {
+        input.value = input.value.trim();
     }
-};
 
-     function removeWhitespace2(input) {
-    input.value = input.value.trim();
-}
-
+    function initializeGenres() {
+        var genres = /*[[${updateMovie.m_genre}]]*/;
+        var genreArray = genres.split(",");
+        var checkboxes = document.getElementsByName('m_genre');
+        for (var i=0; i<checkboxes.length; i++) {
+            if(genreArray.includes(checkboxes[i].value.trim())) {
+                checkboxes[i].checked = true;
+            }
+        }
+    }
+    initializeGenres();
 </script>
 </html>

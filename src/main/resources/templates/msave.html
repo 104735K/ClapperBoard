@@ -125,47 +125,47 @@
     var currentYear = new Date().getFullYear();
     var selectElement = document.getElementById('yearSelect');
     for (var Year = currentYear; Year >= 1900; Year--) {
-    var option = document.createElement('option');
-    option.value = Year;
-    option.textContent = Year + "년";
-    selectElement.appendChild(option);
+        var option = document.createElement('option');
+        option.value = Year;
+        option.textContent = Year + "년";
+        selectElement.appendChild(option);
     }
 
-     function validateGenre() {
-    var checkboxes = document.getElementsByName('m_genre');
-    var checkedCount = 0;
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            checkedCount++;
-            if (checkedCount > 4) {
-                alert('장르는 최대 4개 선택할 수 있습니다.');
-                checkboxes[i].checked = false;
-                return false;
+    function validateGenre() {
+        var checkboxes = document.getElementsByName('m_genre');
+        var checkedCount = 0;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedCount++;
+                if (checkedCount > 4) {
+                    alert('장르는 최대 4개 선택할 수 있습니다.');
+                    checkboxes[i].checked = false;
+                    return false;
+                }
             }
         }
+        if (checkedCount === 0) {
+            alert('장르를 선택해 주세요.');
+            return false;
+        }
+        return true;
     }
-    if (checkedCount === 0) {
-        alert('장르를 선택해 주세요.');
-        return false;
-    }
-    return true;
-}
 
-      const removeWhitespace = (element) => {
-        if (element.value.trim() === "") {
-         element.value = "";
-         alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
-    }
-};
+     const removeWhitespace = (element) => {
+         if (element.value.trim() === "") {
+             element.value = "";
+             alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+        }
+    };
 
    function removeWhitespace2(input) {
-    input.value = input.value.trim();
-}
+        input.value = input.value.trim();
+    }
 
 
     const cancelReq = () => {
-          console.log("Cancel button clicked");
-          location.href = "/mboard/movie";
-       };
+        console.log("Cancel button clicked");
+        location.href = "/mboard/movie";
+    };
 </script>
 </html>
