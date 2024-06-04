@@ -18,8 +18,29 @@ JAVA + Spring Boot JDBC게시판 입니다.
 - Intellij IDEA, GitHub
 
 ## PROJECT STRUCTURE
+```
+./src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── movieboard
+│   │           └── mboard
+│   │               ├── MboardApplication.java
+│   │               ├── controller
+│   │               ├── dao
+│   │               ├── dto
+│   │               ├── service
+│   │               ├── serviceImpl
+│   │               ├── util
+│   │               └── vo
+│   └── resources
+│       ├── application.yml
+│       ├── static
+│       │   └── css
+│       └── templates
+└── test
 
-
+```
 ## 👩🏻‍💻 DEVELOPER
 팀장 및 팀원 : 강성현
 
