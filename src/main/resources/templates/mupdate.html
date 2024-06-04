@@ -20,7 +20,7 @@
 <br>
 <br>
 <br>
-<form action="/mboard/movie/update" method="post" name="mupdateForm" onsubmit="return validateGenre();">
+<form action="/mboard/movie/update" method="post" name="mupdateForm" onsubmit="return validateGenre();" enctype="multipart/form-data">
     <div class="container">
     <div class="padding">
     <div class="padding3">
@@ -46,7 +46,7 @@
         </div>
         <div>
         <b>Movie Year of release</b><br>
-        <select name="m_yor" id="yearSelect" required></select> <br>
+        <select name="m_yor" id="yearSelect"  required></select> <br>
         </div>
     </div>
     <div class="padding3">
@@ -127,6 +127,16 @@
     const cancelReq = () => {
         location.href = "/mboard/movie";
     }
+    window.onload = function() {
+        var selectedYear = /*[[${updateMovie.m_yor}]]*/;
+        var yearSelect = document.getElementById("yearSelect");
+        for (var i = 0; i < yearSelect.options.length; i++) {
+            if (yearSelect.options[i].value == selectedYear) {
+                yearSelect.options[i].selected = true;
+                break;
+            }
+        }
+    };
 
     function initializeYearSelect() {
         var currentYear = new Date().getFullYear();
@@ -193,5 +203,6 @@
         }
     }
     initializeGenres();
+
 </script>
 </html>

@@ -45,21 +45,19 @@
 </body>
 <script>
     const cancelReq = () => {
-          console.log("Cancel button clicked");
-          location.href = "/mboard/community";
-       };
+        console.log("Cancel button clicked");
+        location.href = "/mboard/community";
+    };
 
     const removeWhitespace = (element) => {
         if (element.value.trim() === "") {
-         element.value = "";
-         alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
-    }
-};
+            element.value = "";
+            alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+        }
+    };
+
     function removeWhitespace2(input) {
-    input.value = input.value.trim();
-}
-
-
-
+        input.value = input.value.trim();
+    }
 </script>
 </html>

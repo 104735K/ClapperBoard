@@ -46,27 +46,28 @@
 </body>
 <script th:inline="javascript">
     const cancelReq = () => {
-       location.href = "/mboard/community";
+        location.href = "/mboard/community";
     }
     const updatePost = () => {
-     const pass = /*[[${updatePost.user_pass}]]*/;
-     const inputPass = document.getElementById("user_pass").value;
-     if (pass !== inputPass) {
-       alert("비밀번호가 일치하지 않습니다.");
-       return false;
-     } else {
-        return true;
-     }
+        const pass = /*[[${updatePost.user_pass}]]*/;
+        const inputPass = document.getElementById("user_pass").value;
+        if (pass !== inputPass) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return false;
+            } else {
+                return true;
+            }
     }
 
     const removeWhitespace = (element) => {
         if (element.value.trim() === "") {
-         element.value = "";
-         alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+            element.value = "";
+            alert("공백 입력은 불가 합니다. 내용을 입력해 주세요.");
+        }
     }
-};
-      function removeWhitespace2(input) {
-    input.value = input.value.trim();
-}
+
+    function removeWhitespace2(input) {
+        input.value = input.value.trim();
+    }
 </script>
 </html>

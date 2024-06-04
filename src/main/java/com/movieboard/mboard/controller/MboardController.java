@@ -151,7 +151,38 @@ public class MboardController {
     }
 
     @PostMapping("/movie/update")
-    public String movieUpdate(@ModelAttribute MovieDto movieDto) throws SQLException {
+    public String movieUpdate(@RequestParam("m_writer") String m_writer,
+                              @RequestParam("m_poster") MultipartFile m_poster,
+                              @RequestParam("m_title") String m_title,
+                              @RequestParam("m_yor") int m_yor,
+                              @RequestParam("m_director") String m_director,
+                              @RequestParam("m_actor") String m_actor,
+                              @RequestParam("m_spo") String m_spo,
+                              @RequestParam("m_genre") String m_genre,
+                              @RequestParam("m_rating") int m_rating,
+                              @RequestParam("m_content") String m_content,
+                              @RequestParam("m_id") int m_id ) throws SQLException, IOException {
+        byte[] posterBytes = null;
+        if (!m_poster.isEmpty()) {
+            posterBytes = m_poster.getBytes();
+        }
+
+        boolean is_spoiler = Boolean.parseBoolean(m_spo);
+
+
+        MovieDto movieDto = new MovieDto();
+        movieDto.setM_writer(m_writer);
+        movieDto.setM_poster(posterBytes);
+        movieDto.setM_title(m_title);
+        movieDto.setM_yor(m_yor);
+        movieDto.setM_director(m_director);
+        movieDto.setM_actor(m_actor);
+        movieDto.setM_genre(m_genre);
+        movieDto.setM_spo(is_spoiler);
+        movieDto.setM_rating(m_rating);
+        movieDto.setM_content(m_content);
+        movieDto.setM_id(m_id);
+
         mboardService.updateMovie(movieDto);
         return "redirect:/mboard/movie";
     }

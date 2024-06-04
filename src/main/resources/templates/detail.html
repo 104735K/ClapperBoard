@@ -80,20 +80,20 @@
         if (pass !== inputPass) {
             alert("비밀번호가 일치하지 않습니다.");
             return false;
-          } else {
-            return  location.href = "/mboard/community/delete/" + id;
-      }
-    }
+            } else {
+                return  location.href = "/mboard/community/delete/" + id;
+            }
+        }
 
-        const modal = document.querySelector('.modal');
-        const btnOpenModal=document.querySelector('.btn-open-modal');
+    const modal = document.querySelector('.modal');
+    const btnOpenModal=document.querySelector('.btn-open-modal');
 
-        btnOpenModal.addEventListener("click", ()=>{
+    btnOpenModal.addEventListener("click", ()=>{
         modal.style.display="flex";
-        });
+    });
 
-          function removeWhitespace2(input) {
-          input.value = input.value.trim();
-}
+    function removeWhitespace2(input) {
+        input.value = input.value.trim();
+    }
 </script>
 </html>
