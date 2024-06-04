@@ -17,7 +17,7 @@ JAVA + Spring Boot JDBC게시판 입니다.
 - Front : HTML/CSS, JavaScript
 - Intellij IDEA, GitHub
 
-## PROJECT STRUCTURE
+## 📂 PROJECT STRUCTURE
 ```
 ./src
 ├── main
