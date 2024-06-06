@@ -46,6 +46,28 @@
 <button class="btn-open-modal">DELETE</button>
 </div>
 
+<div id="commentList">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>WRITER</th>
+            <th>CONTENTS</th>
+        </tr>
+        <tr th:each="comment:${commentList}">
+            <td th:text="${commentList.c_id}"></td>
+            <td th:text="${commentList.c_writer}"></td>
+            <td th:text="${commentList.c_content}"></td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <input type="text" id="c_writer" placeholder="WRITER">
+    <input type="text" id="c_content" placeholder="CONTENT">
+    <button id="comment-write-btn" onclick="commentWrite()">SAVE</button>
+</div>
+
+
 <div class="modal">
     <div class="modal_body">
         <h2> 비밀번호를 입력해 주세요.</h2><br>
@@ -94,6 +116,11 @@
 
     function removeWhitespace2(input) {
         input.value = input.value.trim();
+    }
+
+    const commentWrite = () => {
+    const writer = document.getElementById('c_writer').value;
+    const content = document.getElementById('c_content').value;
     }
 </script>
 </html>

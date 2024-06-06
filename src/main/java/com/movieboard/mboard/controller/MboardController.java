@@ -43,8 +43,8 @@ public class MboardController {
         return "community";
     }
 
-    @GetMapping("/community/save")
-    public String save() {
+    @GetMapping("/community/new")
+    public String showSaveForm() {
         return "csave";
     }
 
@@ -90,10 +90,9 @@ public class MboardController {
         model.addAttribute("movieList", movieDtoList);
         return "movie";
     }
-    @GetMapping("/movie/save")
-    public String movieSave() {
+    @GetMapping("/movie/new")
+    public String showMovieSaveForm() {
         System.out.println("qw");
-
         return "msave";
     }
 
