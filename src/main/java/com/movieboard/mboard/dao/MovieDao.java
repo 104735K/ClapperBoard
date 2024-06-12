@@ -26,25 +26,25 @@ public class MovieDao {
     }
 
     public void createMovie(MovieDto movieDto) throws SQLException, IOException {
-        String query = "INSERT INTO movies (m_id, m_writer, m_pass, m_poster, m_title, m_yor, m_director, m_actor, m_genre, m_spo, m_rating, m_content) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO movies (mId, mWriter, mPass, mPoster, mTitle, mYor, mDirector, mActor, mGenre, mSpo, mRating, mContent) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setInt(1, movieDto.getM_id());
-            pstmt.setString(2, movieDto.getM_writer());
-            pstmt.setString(3,movieDto.getM_pass());
+            pstmt.setInt(1, movieDto.getMId());
+            pstmt.setString(2, movieDto.getMWriter());
+            pstmt.setString(3,movieDto.getMPass());
 
-            if (movieDto.getM_poster() != null) {
-                pstmt.setBytes(4, movieDto.getM_poster());
+            if (movieDto.getMPoster() != null) {
+                pstmt.setBytes(4, movieDto.getMPoster());
             } else {
                 pstmt.setNull(4, Types.BLOB);
             }
-            pstmt.setString(5, movieDto.getM_title());
-            pstmt.setInt(6, movieDto.getM_yor());
-            pstmt.setString(7, movieDto.getM_director());
-            pstmt.setString(8, movieDto.getM_actor());
-            pstmt.setString(9, movieDto.getM_genre());
-            pstmt.setBoolean(10,movieDto.isM_spo());
-            pstmt.setInt(11, movieDto.getM_rating());
-            pstmt.setString(12, movieDto.getM_content());
+            pstmt.setString(5, movieDto.getMTitle());
+            pstmt.setInt(6, movieDto.getMYor());
+            pstmt.setString(7, movieDto.getMDirector());
+            pstmt.setString(8, movieDto.getMActor());
+            pstmt.setString(9, movieDto.getMGenre());
+            pstmt.setBoolean(10,movieDto.isMSpo());
+            pstmt.setInt(11, movieDto.getMRating());
+            pstmt.setString(12, movieDto.getMContent());
             pstmt.executeUpdate();
 
         }
@@ -52,16 +52,16 @@ public class MovieDao {
 
     public List<MovieDto> getAllMovies() {
         List<MovieDto> movieDtoList = new ArrayList<>();
-        String query = "SELECT * FROM movies ORDER BY m_id DESC";
+        String query = "SELECT * FROM movies ORDER BY mId DESC";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 MovieDto movieDto = new MovieDto();
-                movieDto.setM_id(resultSet.getInt("m_id"));
-                movieDto.setM_writer(resultSet.getString("m_writer"));
-                movieDto.setM_title(resultSet.getString("m_title"));
-                movieDto.setM_spo(resultSet.getBoolean("m_spo"));
+                movieDto.setMId(resultSet.getInt("mId"));
+                movieDto.setMWriter(resultSet.getString("mWriter"));
+                movieDto.setMTitle(resultSet.getString("mTitle"));
+                movieDto.setMSpo(resultSet.getBoolean("mSpo"));
                 movieDtoList.add(movieDto);
             }
         } catch (SQLException exception) {
@@ -72,24 +72,24 @@ public class MovieDao {
     }
 
     public Optional<MovieDto> getMovieById(int id) throws SQLException {
-        String query = "SELECT * FROM movies WHERE m_id =?";
+        String query = "SELECT * FROM movies WHERE mId =?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     MovieDto movieDto = new MovieDto();
-                    movieDto.setM_id(resultSet.getInt("m_id"));
-                    movieDto.setM_writer(resultSet.getString("m_writer"));
-                    movieDto.setM_pass(resultSet.getString("m_pass"));
-                    movieDto.setM_poster(resultSet.getBytes("m_poster"));
-                    movieDto.setM_title(resultSet.getString("m_title"));
-                    movieDto.setM_yor(resultSet.getInt("m_yor"));
-                    movieDto.setM_director(resultSet.getString("m_director"));
-                    movieDto.setM_actor(resultSet.getString("m_actor"));
-                    movieDto.setM_genre(resultSet.getString("m_genre"));
-                    movieDto.setM_spo(resultSet.getBoolean("m_spo"));
-                    movieDto.setM_rating(resultSet.getInt("m_rating"));
-                    movieDto.setM_content(resultSet.getString("m_content"));
+                    movieDto.setMId(resultSet.getInt("mId"));
+                    movieDto.setMWriter(resultSet.getString("mWriter"));
+                    movieDto.setMPass(resultSet.getString("mPass"));
+                    movieDto.setMPoster(resultSet.getBytes("mPoster"));
+                    movieDto.setMTitle(resultSet.getString("mTitle"));
+                    movieDto.setMYor(resultSet.getInt("mYor"));
+                    movieDto.setMDirector(resultSet.getString("mDirector"));
+                    movieDto.setMActor(resultSet.getString("mActor"));
+                    movieDto.setMGenre(resultSet.getString("mGenre"));
+                    movieDto.setMSpo(resultSet.getBoolean("mSpo"));
+                    movieDto.setMRating(resultSet.getInt("mRating"));
+                    movieDto.setMContent(resultSet.getString("mContent"));
                     return Optional.of(movieDto);
                 }
 
@@ -98,28 +98,27 @@ public class MovieDao {
         return Optional.empty();
     }
     public MovieDto updateMovie (MovieDto movieDto) throws SQLException {
-        String query = "UPDATE movies SET m_writer =?, m_poster=?, m_title =?, m_yor=?, m_director=?, m_actor=?, m_genre=?, m_spo=?, m_rating=?, m_content=? WHERE m_id=?";
+        String query = "UPDATE movies SET  mPoster=?, mTitle =?, mYor=?, mDirector=?, mActor=?, mGenre=?, mSpo=?, mRating=?, mContent=? WHERE mId=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, movieDto.getM_writer());
-            preparedStatement.setBytes(2, movieDto.getM_poster());
-            preparedStatement.setString(3, movieDto.getM_title());
-            preparedStatement.setInt(4, movieDto.getM_yor());
-            preparedStatement.setString(5, movieDto.getM_director());
-            preparedStatement.setString(6, movieDto.getM_actor());
-            preparedStatement.setString(7, movieDto.getM_genre());
-            preparedStatement.setBoolean(8, movieDto.isM_spo());
-            preparedStatement.setInt(9, movieDto.getM_rating());
-            preparedStatement.setString(10, movieDto.getM_content());
-            preparedStatement.setInt(11, movieDto.getM_id());
+            preparedStatement.setBytes(1, movieDto.getMPoster());
+            preparedStatement.setString(2, movieDto.getMTitle());
+            preparedStatement.setInt(3, movieDto.getMYor());
+            preparedStatement.setString(4, movieDto.getMDirector());
+            preparedStatement.setString(5, movieDto.getMActor());
+            preparedStatement.setString(6, movieDto.getMGenre());
+            preparedStatement.setBoolean(7, movieDto.isMSpo());
+            preparedStatement.setInt(8, movieDto.getMRating());
+            preparedStatement.setString(9, movieDto.getMContent());
+            preparedStatement.setInt(10, movieDto.getMId());
             preparedStatement.executeUpdate();
         }
         return movieDto;
     }
 
-    public void deleteMovie(int m_id) throws SQLException {
-        String query ="DELETE FROM movies WHERE m_id=?";
+    public void deleteMovie(int mId) throws SQLException {
+        String query ="DELETE FROM movies WHERE mId=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, m_id);
+            preparedStatement.setInt(1, mId);
             preparedStatement.executeUpdate();
         }
     }

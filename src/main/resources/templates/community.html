@@ -32,9 +32,9 @@
             <th>WRITER</th>
         </tr>
         <tr th:each = "postDto: ${postList}">
-            <td th:text = "${postDto.user_id}"></td>
-            <td><a class="fs" th:href = "@{|/mboard/community/${postDto.user_id}|}" th:text = "${postDto.title}"></a></td>
-            <td th:text ="${postDto.user_name}"></td>
+            <td th:text = "${postDto.postId}"></td>
+            <td><a class="fs" th:href = "@{|/mboard/community/${postDto.postId}|}" th:text = "${postDto.postTitle}"></a></td>
+            <td th:text ="${postDto.postWriter}"></td>
         </tr>
     </table>
 </div>

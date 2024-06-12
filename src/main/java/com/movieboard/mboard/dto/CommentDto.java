@@ -6,10 +6,10 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class CommentDto {
-    private int c_id;
-    private String c_writer;
-    private String c_content;
-    private int community_id;
+    private int commentId;
+    private int parentCommentId;
+    private String commentWriter;
+    private String commentContent;
+    private int postId;
 }

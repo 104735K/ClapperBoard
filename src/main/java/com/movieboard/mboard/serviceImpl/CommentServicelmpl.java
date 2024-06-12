@@ -3,17 +3,16 @@ package com.movieboard.mboard.serviceImpl;
 import com.movieboard.mboard.dao.CommentDao;
 import com.movieboard.mboard.dto.CommentDto;
 import com.movieboard.mboard.service.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 @Service
+@RequiredArgsConstructor
 public class CommentServicelmpl implements CommentService {
-    private CommentDao commentDao;
+    private final CommentDao commentDao;
 
-    public CommentServicelmpl(CommentDao commentDao) {
-        this.commentDao = commentDao;
-    }
 
     @Override
     public void save(CommentDto commentDTO) throws SQLException {
@@ -21,11 +20,12 @@ public class CommentServicelmpl implements CommentService {
     }
 
     @Override
-    public List<CommentDto> findComment() {
-        return commentDao.getAllComments();
+    public List<CommentDto> getCommentsByPostId(int postId) throws SQLException {
+        return commentDao.getCommentsByPostId(postId);
     }
+
     @Override
-    public void deleteComment(int c_id) throws SQLException {
-        commentDao.deleteComment(c_id);
+    public void deleteComment(int commentId) throws SQLException {
+        commentDao.deleteComment(commentId);
     }
 }

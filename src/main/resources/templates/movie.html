@@ -33,13 +33,13 @@
             <th>WRITER</th>
         </tr>
         <tr th:each = "movieDto: ${movieList}">
-            <td th:text = "${movieDto.m_id}"></td>
+            <td th:text = "${movieDto.mId}"></td>
             <td>
-                <span class="spo" th:if="${movieDto.m_spo}">O</span>
-                <span th:if="${!movieDto.m_spo}">X</span>
+                <span class="spo" th:if="${movieDto.mSpo}">O</span>
+                <span th:if="${!movieDto.mSpo}">X</span>
             </td>
-            <td><a class="fs" th:href = "@{|/mboard/movie/${movieDto.m_id}|}" th:text = "${movieDto.m_title}"></a></td>
-            <td th:text ="${movieDto.m_writer}"></td>
+            <td><a class="fs" th:href = "@{|/mboard/movie/${movieDto.mId}|}" th:text = "${movieDto.mTitle}"></a></td>
+            <td th:text ="${movieDto.mWriter}"></td>
         </tr>
     </table>
 </div>

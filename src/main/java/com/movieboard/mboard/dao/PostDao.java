@@ -23,33 +23,32 @@ public class PostDao {
     }
 
     public void createPost(PostDto postDTO) throws SQLException {
-        String query = "INSERT INTO posts (user_id, user_name, user_pass, title, content) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO posts (postId, postWriter, postPass, postTitle, postContent) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setInt(1, postDTO.getUser_id());
-            pstmt.setString(2, postDTO.getUser_name());
-            pstmt.setString(3, postDTO.getUser_pass());
-            pstmt.setString(4, postDTO.getTitle());
-            pstmt.setString(5, postDTO.getContent());
+            pstmt.setInt(1, postDTO.getPostId());
+            pstmt.setString(2, postDTO.getPostWriter());
+            pstmt.setString(3, postDTO.getPostPass());
+            pstmt.setString(4, postDTO.getPostTitle());
+            pstmt.setString(5, postDTO.getPostContent());
             pstmt.executeUpdate();
         }
     }
 
     public List<PostDto> getAllPosts() {
         List<PostDto> postDtoList = new ArrayList<>();
-        String query = "SELECT * FROM posts ORDER BY user_id DESC";
+        String query = "SELECT * FROM posts ORDER BY postId DESC";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                PostDto postDTO = new PostDto(
-                        resultSet.getInt("user_id"),
-                        resultSet.getString("user_name"),
-                        resultSet.getString("user_pass"),
-                        resultSet.getString("title"),
-                        resultSet.getString("content")
-                );
-                postDtoList.add(postDTO);
+                PostDto postDTO = new PostDto();
+                    postDTO.setPostId(resultSet.getInt("postId"));
+                    postDTO.setPostWriter(resultSet.getString("postWriter"));
+                    postDTO.setPostPass(resultSet.getString("postPass"));
+                    postDTO.setPostTitle(resultSet.getString("postTitle"));
+                    postDTO.setPostContent(resultSet.getString("postContent"));
+                    postDtoList.add(postDTO);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -58,17 +57,17 @@ public class PostDao {
     }
 
     public Optional<PostDto> getPostById(int id) throws SQLException {
-        String query = "SELECT * FROM posts WHERE user_id =?";
+        String query = "SELECT * FROM posts WHERE postId =?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, id);
             try (ResultSet resultSet = pstmt.executeQuery()) {
                 if (resultSet.next()) {
                     PostDto postDTO = new PostDto();
-                    postDTO.setUser_id(resultSet.getInt("user_id"));
-                    postDTO.setUser_name(resultSet.getString("user_name"));
-                    postDTO.setUser_pass(resultSet.getString("user_pass"));
-                    postDTO.setTitle(resultSet.getString("title"));
-                    postDTO.setContent(resultSet.getString("content"));
+                    postDTO.setPostId(resultSet.getInt("postId"));
+                    postDTO.setPostWriter(resultSet.getString("postWriter"));
+                    postDTO.setPostPass(resultSet.getString("postPass"));
+                    postDTO.setPostTitle(resultSet.getString("postTitle"));
+                    postDTO.setPostContent(resultSet.getString("postContent"));
                     return Optional.of(postDTO);
                 }
             }
@@ -76,21 +75,20 @@ public class PostDao {
     }
 
     public PostDto updatePost(PostDto postDTO) throws SQLException {
-        String query = "UPDATE posts SET user_name = ?, title = ?, content =? WHERE user_id =?";
+        String query = "UPDATE posts SET postTitle = ?, postContent =? WHERE postId =?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1,postDTO.getUser_name());
-            preparedStatement.setString(2, postDTO.getTitle());
-            preparedStatement.setString(3, postDTO.getContent());
-            preparedStatement.setInt(4, postDTO.getUser_id());
+            preparedStatement.setString(1, postDTO.getPostTitle());
+            preparedStatement.setString(2, postDTO.getPostContent());
+            preparedStatement.setInt(3, postDTO.getPostId());
             preparedStatement.executeUpdate();
         }
         return postDTO;
     }
 
-    public void deletePost(int post_id) throws SQLException {
-        String query = "DELETE FROM posts WHERE user_id =?";
+    public void deletePost(int postId) throws SQLException {
+        String query = "DELETE FROM posts WHERE postId =?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, post_id);
+            preparedStatement.setInt(1, postId);
             preparedStatement.executeUpdate();
         }
     }

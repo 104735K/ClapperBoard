@@ -24,55 +24,55 @@
     <div class="padding1">
         <div class="padding2">
         <b>ID</b><br>
-        <span th:text="${movie.m_id}"></span>
+        <span th:text="${movie.mId}"></span>
         </div>
         <div class="padding3">
         <b>WRITER</b><br>
-        <span th:text="${movie.m_writer}"></span>
+        <span th:text="${movie.mWriter}"></span>
         </div>
     </div>
     <br>
         <div class="padding6">
         <b>MOVIE POSTER</b><br>
-            <img id="m_img" src="" />
+            <img id="mImg" src="" />
         </div>
 <br>
     <div class="padding1">
         <div class="padding3">
         <b>MOVIE TITLE</b><br>
-        <span th:text="${movie.m_title}"></span>
+        <span th:text="${movie.mTitle}"></span>
         </div>
         <div class="padding2">
         <b>YEAR OF RELEASE</b><br>
-        <span th:text="${movie.m_yor}"></span>
+        <span th:text="${movie.mYor}"></span>
         </div>
     </div>
 <br>
     <div class="padding1">
         <div class="padding4">
         <b>DIRECTOR</b><br>
-        <span th:text="${movie.m_director}"></span>
+        <span th:text="${movie.mDirector}"></span>
         </div>
         <div class="padding4">
         <b>ACTOR</b><br>
-        <span th:text="${movie.m_actor}"></span>
+        <span th:text="${movie.mActor}"></span>
         </div>
     </div>
 <br>
     <div class="padding1">
         <div class="padding4">
         <b>GENRE</b><br>
-        <span th:text="${movie.m_genre}"></span>
+        <span th:text="${movie.mGenre}"></span>
         </div>
         <div class="padding4">
         <b>RATING</b><br>
-        <span th:text="${movie.m_rating}" id="ratingStars" ></span>
+        <span th:text="${movie.mRating}" id="ratingStars" ></span>
         </div>
     </div>
 <br>
     <div class="padding5">
         <b>CONTENT</b><br>
-        <pre th:text="${movie.m_content}"></pre>
+        <pre th:text="${movie.mContent}"></pre>
     </div>
 </div>
 </div>
@@ -87,7 +87,7 @@
 <div class="modal">
     <div class="modal_body">
         <h2> 비밀번호를 입력해 주세요.</h2><br>
-        <input type="password" name="password" id="m_pass" class="textbox0" oninput="removeWhitespace2(this)">
+        <input type="password" name="password" id="mPass" class="textbox0" oninput="removeWhitespace2(this)">
         <p>※ 한번 삭제된 게시글은 되돌릴 수 없습니다 ※</p>
         <button  class="btn4" onclick="cancelReq()">CANCEL</button>
         <button class="btn3" onclick="return deleteReq()">DELETE</button>
@@ -98,11 +98,11 @@
 <script th:inline="javascript">
 
     $(function(){
-    const movieImg = /*[[${movie.m_img}]]*/;
+    const movieImg = /*[[${movie.mImg}]]*/;
     if (movieImg) {
-        document.getElementById("m_img").src = "data:image/png;base64,"+[[${movie.m_img}]];
+        document.getElementById("mImg").src = "data:image/png;base64,"+[[${movie.mImg}]];
         } else {
-            document.getElementById("m_img").style.display = "none";
+            document.getElementById("mImg").style.display = "none";
             const errorMessage = document.createElement("p");
             errorMessage.textContent = "선택한 이미지 파일이 없습니다.";
             errorMessage.style.color = "red";
@@ -110,7 +110,7 @@
         }
     });
 
-    const rating = parseInt("[[${movie.m_rating}]]");
+    const rating = parseInt("[[${movie.mRating}]]");
     let stars = "";
     for (let i = 0; i < rating; i++) {
         stars += "★";
@@ -124,7 +124,7 @@
     }
     const updateReq = () => {
         console.log("수정 요청");
-        const id = [[${movie.m_id}]];
+        const id = [[${movie.mId}]];
         location.href = "/mboard/movie/update/" + id;
     }
     const cancelReq = () => {
@@ -133,9 +133,9 @@
     }
     const deleteReq = () => {
         console.log("삭제 요청");
-        const id = [[${movie.m_id}]];
-        const pass = /*[[${movie.m_pass}]]*/;
-        const inputPass = document.getElementById("m_pass").value;
+        const id = [[${movie.mId}]];
+        const pass = /*[[${movie.mPass}]]*/;
+        const inputPass = document.getElementById("mPass").value;
         if (pass !== inputPass) {
             alert("비밀번호가 일치하지 않습니다.");
             return false;

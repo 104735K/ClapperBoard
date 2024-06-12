@@ -22,38 +22,38 @@ public class CommentDao {
     }
 
     public void createComment(CommentDto commentDTO) throws SQLException {
-        String query = "INSERT INTO comments (c_id, c_writer, c_content) VALUES (?,?,?)";
+        String query = "INSERT INTO comments (postId, commentWriter, commentContent) VALUES (?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, commentDTO.getC_id());
-            preparedStatement.setString(2, commentDTO.getC_writer());
-            preparedStatement.setString(3, commentDTO.getC_content());
+            preparedStatement.setInt(1, commentDTO.getPostId());
+            preparedStatement.setString(2, commentDTO.getCommentWriter());
+            preparedStatement.setString(3, commentDTO.getCommentContent());
             preparedStatement.executeUpdate();
         }
     }
 
-    public List<CommentDto> getAllComments() {
+    public List<CommentDto> getCommentsByPostId(int postId) throws SQLException {
         List<CommentDto> commentDtoList = new ArrayList<>();
-        String query = "SELECT * FROM comments";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                CommentDto commentDto = new CommentDto();
-                commentDto.setC_id(resultSet.getInt("c_id"));
-                commentDto.setC_writer(resultSet.getString("c_writer"));
-                commentDto.setC_content(resultSet.getString("c_content"));
-                commentDtoList.add(commentDto);
+        String query = "SELECT * FROM comments WHERE postId=?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, postId);
+            try (ResultSet resultSet = preparedStatement.executeQuery();) {
+                while (resultSet.next()) {
+                    CommentDto commentDto = new CommentDto();
+                    commentDto.setCommentId(resultSet.getInt("commentId"));
+                    commentDto.setPostId(resultSet.getInt("postId"));
+                    commentDto.setCommentWriter(resultSet.getString("commentWriter"));
+                    commentDto.setCommentContent(resultSet.getString("commentContent"));
+                    commentDtoList.add(commentDto);
+                }
             }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
         }
-        return commentDtoList;
+            return commentDtoList;
     }
 
-    public void deleteComment(int c_id) throws SQLException {
-        String query = "DELETE FROM commets WHERE c_id=?";
+    public void deleteComment(int commentId) throws SQLException {
+        String query = "DELETE FROM comments WHERE commentId=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setInt(1, c_id);
+            preparedStatement.setInt(1, commentId);
             preparedStatement.executeUpdate();
         }
     }

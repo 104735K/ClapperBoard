@@ -2,8 +2,13 @@ package com.movieboard.mboard.serviceImpl;
 
 import com.movieboard.mboard.dao.MovieDao;
 import com.movieboard.mboard.dao.PostDao;
+import com.movieboard.mboard.dto.CommentDto;
 import com.movieboard.mboard.dto.MovieDto;
 import com.movieboard.mboard.dto.PostDto;
+import com.movieboard.mboard.service.CommentService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.movieboard.mboard.service.MboardService;
 
@@ -13,14 +18,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public  class MboardServiceImpl implements MboardService {
     private PostDao postDao;
     private MovieDao movieDao;
-
-    public MboardServiceImpl(PostDao postDao, MovieDao movieDao) {
-        this.postDao = postDao;
-        this.movieDao = movieDao;
-    }
+    private CommentService commentService;
 
     @Override
     public List<PostDto> selectPost() {
@@ -34,18 +36,32 @@ public  class MboardServiceImpl implements MboardService {
     }
 
     @Override
-    public Optional<PostDto> getPostById(int user_id) throws SQLException {
-        return postDao.getPostById(user_id);
+    public Optional<PostDto> getPostById(int postId) {
+        try {
+            Optional<PostDto> optionalPostDto = postDao.getPostById(postId);
+            optionalPostDto.ifPresent(postDto -> {
+                try {
+                    List<CommentDto> comments = commentService.getCommentsByPostId(postId);
+                    postDto.setPostComment(comments);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+            return optionalPostDto;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
-
+    
     @Override
     public void updatePost(PostDto postDto) throws SQLException {
         postDao.updatePost(postDto);
     }
 
     @Override
-    public void deletePost(int user_id) throws SQLException {
-        postDao.deletePost(user_id);
+    public void deletePost(int postId) throws SQLException {
+        postDao.deletePost(postId);
 
     }
 
@@ -61,8 +77,8 @@ public  class MboardServiceImpl implements MboardService {
     }
 
     @Override
-    public Optional<MovieDto> getMovieById(int m_id) throws SQLException {
-        return movieDao.getMovieById(m_id);
+    public Optional<MovieDto> getMovieById(int mId) throws SQLException {
+        return movieDao.getMovieById(mId);
     }
 
     @Override
@@ -72,8 +88,8 @@ public  class MboardServiceImpl implements MboardService {
     }
 
     @Override
-    public void deleteMovie(int m_id) throws SQLException {
-        movieDao.deleteMovie(m_id);
+    public void deleteMovie(int mId) throws SQLException {
+        movieDao.deleteMovie(mId);
 
     }
 }

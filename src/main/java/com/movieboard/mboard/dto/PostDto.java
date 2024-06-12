@@ -5,14 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostDto {
-    private int user_id;
-    private String user_name;
-    private String user_pass;
-    private String title;
-    private String content;
+    private int postId;
+    private String postWriter;
+    private String postPass;
+    private String postTitle;
+    private String postContent;
+    private List<CommentDto> postComment;
 }

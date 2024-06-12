@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CommentService {
     void save (CommentDto commentDTO) throws SQLException;
-    List<CommentDto> findComment();
-    void deleteComment(int c_id) throws SQLException;
+
+    List<CommentDto> getCommentsByPostId(int postId) throws SQLException;
+
+    void deleteComment(int commentId) throws SQLException;
 }

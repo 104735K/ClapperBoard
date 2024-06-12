@@ -10,17 +10,17 @@ import java.io.File;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MovieDto {
-    private int m_id;
-    private String m_writer;
-    private String m_pass;
-    private byte[] m_poster;
-    private String m_title;
-    private int m_yor;
-    private String m_director;
-    private String m_actor;
-    private String m_genre;
-    private boolean m_spo;
-    private int m_rating;
-    private String m_content;
-    private String m_img;
+    private int mId;
+    private String mWriter;
+    private String mPass;
+    private byte[] mPoster;
+    private String mTitle;
+    private int mYor;
+    private String mDirector;
+    private String mActor;
+    private String mGenre;
+    private boolean mSpo;
+    private int mRating;
+    private String mContent;
+    private String mImg;
 }

@@ -1,8 +1,11 @@
 package com.movieboard.mboard.controller;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import com.movieboard.mboard.dao.MovieDao;
+import com.movieboard.mboard.dto.CommentDto;
 import com.movieboard.mboard.dto.MovieDto;
+import com.movieboard.mboard.service.CommentService;
 import com.mysql.cj.jdbc.Blob;
+import lombok.AllArgsConstructor;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -21,20 +24,14 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/mboard")
+@AllArgsConstructor
 public class MboardController {
 
     private PostDao postDao;
     private MovieDao movieDao;
-
     private MboardService mboardService;
+    private CommentService commentService;
 
-
-    @Autowired
-    public MboardController(PostDao postDao, MovieDao movieDao, MboardService mboardService) {
-        this.postDao = postDao;
-        this.movieDao = movieDao;
-        this.mboardService = mboardService;
-    }
 // 자유게시판
     @GetMapping("/community")
     public String community(Model model) {
@@ -54,19 +51,21 @@ public class MboardController {
         return "redirect:/mboard/community";
     }
 
-    @GetMapping("/community/{user_id}")
-    public String findById(@PathVariable int user_id, Model model) throws SQLException {
-        Optional<PostDto> postDto = mboardService.getPostById(user_id);
+    @GetMapping("/community/{postId}")
+    public String findById(@PathVariable int postId, Model model) throws SQLException {
+        Optional<PostDto> postDto = mboardService.getPostById(postId);
         if (postDto.isPresent()) {
             PostDto postDto1 = postDto.get();
+            List<CommentDto> comments = commentService.getCommentsByPostId(postId);
+            postDto1.setPostComment(comments);
             model.addAttribute("post", postDto1);
         }
         return "detail";
     }
 
-    @GetMapping("/community/update/{user_id}")
-    public String updateForm(@PathVariable int user_id, Model model) throws SQLException {
-        Optional<PostDto> postDTO = mboardService.getPostById(user_id);
+    @GetMapping("/community/update/{postId}")
+    public String updateForm(@PathVariable int postId, Model model) throws SQLException {
+        Optional<PostDto> postDTO = mboardService.getPostById(postId);
         postDTO.ifPresent(dto -> model.addAttribute("updatePost", dto));
         return "update";
     }
@@ -77,9 +76,9 @@ public class MboardController {
         return "redirect:/mboard/community";
     }
 
-    @GetMapping("/community/delete/{user_id}")
-    public String delete (@PathVariable int user_id) throws SQLException {
-        mboardService.deletePost(user_id);
+    @GetMapping("/community/delete/{postId}")
+    public String delete (@PathVariable int postId) throws SQLException {
+        mboardService.deletePost(postId);
         return "redirect:/mboard/community";
     }
 
@@ -97,44 +96,44 @@ public class MboardController {
     }
 
     @PostMapping("/movie/save")
-    public String movieSave(@RequestParam("m_writer") String m_writer,
-                            @RequestParam("m_pass") String m_pass,
-                            @RequestParam("m_poster") MultipartFile m_poster,
-                            @RequestParam("m_title") String m_title,
-                            @RequestParam("m_yor") int m_yor,
-                            @RequestParam("m_director") String m_director,
-                            @RequestParam("m_actor") String m_actor,
-                            @RequestParam("m_spo") String m_spo,
-                            @RequestParam("m_genre") String m_genre,
-                            @RequestParam("m_rating") int m_rating,
-                            @RequestParam("m_content") String m_content) throws SQLException, IOException {
-        byte[] posterBytes = m_poster.getBytes();
+    public String movieSave(@RequestParam("mWriter") String mWriter,
+                            @RequestParam("mPass") String mPass,
+                            @RequestParam("mPoster") MultipartFile mPoster,
+                            @RequestParam("mTitle") String mTitle,
+                            @RequestParam("mYor") int mYor,
+                            @RequestParam("mDirector") String mDirector,
+                            @RequestParam("mActor") String mActor,
+                            @RequestParam("mSpo") String mSpo,
+                            @RequestParam("mGenre") String mGenre,
+                            @RequestParam("mRating") int mRating,
+                            @RequestParam("mContent") String mContent) throws SQLException, IOException {
+        byte[] posterBytes = mPoster.getBytes();
 
-        boolean is_spoiler = Boolean.parseBoolean(m_spo);
+        boolean is_spoiler = Boolean.parseBoolean(mSpo);
 
         MovieDto movieDto = new MovieDto();
-        movieDto.setM_writer(m_writer);
-        movieDto.setM_pass(m_pass);
-        movieDto.setM_poster(posterBytes);
-        movieDto.setM_title(m_title);
-        movieDto.setM_yor(m_yor);
-        movieDto.setM_director(m_director);
-        movieDto.setM_actor(m_actor);
-        movieDto.setM_genre(m_genre);
-        movieDto.setM_spo(is_spoiler);
-        movieDto.setM_rating(m_rating);
-        movieDto.setM_content(m_content);
+        movieDto.setMWriter(mWriter);
+        movieDto.setMPass(mPass);
+        movieDto.setMPoster(posterBytes);
+        movieDto.setMTitle(mTitle);
+        movieDto.setMYor(mYor);
+        movieDto.setMDirector(mDirector);
+        movieDto.setMActor(mActor);
+        movieDto.setMGenre(mGenre);
+        movieDto.setMSpo(is_spoiler);
+        movieDto.setMRating(mRating);
+        movieDto.setMContent(mContent);
 
         mboardService.insertMovie(movieDto);
         return "redirect:/mboard/movie";
     }
-    @GetMapping("/movie/{m_id}")
-    public String findMovieById(@PathVariable int m_id, Model model) throws SQLException {
-        Optional<MovieDto> movieDto = mboardService.getMovieById(m_id);
+    @GetMapping("/movie/{mId}")
+    public String findMovieById(@PathVariable int mId, Model model) throws SQLException {
+        Optional<MovieDto> movieDto = mboardService.getMovieById(mId);
         if (movieDto.isPresent()) {
             MovieDto movieDto1 = movieDto.get();
-            byte[] test = movieDto.get().getM_poster();
-            movieDto.get().setM_img(Base64.encodeBase64String(test));
+            byte[] test = movieDto.get().getMPoster();
+            movieDto.get().setMImg(Base64.encodeBase64String(test));
             model.addAttribute("movie", movieDto1);
 
         }
@@ -142,52 +141,52 @@ public class MboardController {
         return "mdetail";
 
     }
-    @GetMapping("/movie/update/{m_id}")
-    public String updateMovieForm(@PathVariable int m_id, Model model) throws SQLException {
-        Optional<MovieDto> movieDto = mboardService.getMovieById(m_id);
+    @GetMapping("/movie/update/{mId}")
+    public String updateMovieForm(@PathVariable int mId, Model model) throws SQLException {
+        Optional<MovieDto> movieDto = mboardService.getMovieById(mId);
         movieDto.ifPresent(dto -> model.addAttribute("updateMovie", dto));
         return "mupdate";
     }
 
     @PostMapping("/movie/update")
-    public String movieUpdate(@RequestParam("m_writer") String m_writer,
-                              @RequestParam("m_poster") MultipartFile m_poster,
-                              @RequestParam("m_title") String m_title,
-                              @RequestParam("m_yor") int m_yor,
-                              @RequestParam("m_director") String m_director,
-                              @RequestParam("m_actor") String m_actor,
-                              @RequestParam("m_spo") String m_spo,
-                              @RequestParam("m_genre") String m_genre,
-                              @RequestParam("m_rating") int m_rating,
-                              @RequestParam("m_content") String m_content,
-                              @RequestParam("m_id") int m_id ) throws SQLException, IOException {
+    public String movieUpdate(@RequestParam("mWriter") String mWriter,
+                              @RequestParam("mPoster") MultipartFile mPoster,
+                              @RequestParam("mTitle") String mTitle,
+                              @RequestParam("mYor") int mYor,
+                              @RequestParam("mDirector") String mDirector,
+                              @RequestParam("mActor") String mActor,
+                              @RequestParam("mSpo") String mSpo,
+                              @RequestParam("mGenre") String mGenre,
+                              @RequestParam("mRating") int mRating,
+                              @RequestParam("mContent") String mContent,
+                              @RequestParam("mId") int mId ) throws SQLException, IOException {
         byte[] posterBytes = null;
-        if (!m_poster.isEmpty()) {
-            posterBytes = m_poster.getBytes();
+        if (!mPoster.isEmpty()) {
+            posterBytes = mPoster.getBytes();
         }
 
-        boolean is_spoiler = Boolean.parseBoolean(m_spo);
+        boolean is_spoiler = Boolean.parseBoolean(mSpo);
 
 
         MovieDto movieDto = new MovieDto();
-        movieDto.setM_writer(m_writer);
-        movieDto.setM_poster(posterBytes);
-        movieDto.setM_title(m_title);
-        movieDto.setM_yor(m_yor);
-        movieDto.setM_director(m_director);
-        movieDto.setM_actor(m_actor);
-        movieDto.setM_genre(m_genre);
-        movieDto.setM_spo(is_spoiler);
-        movieDto.setM_rating(m_rating);
-        movieDto.setM_content(m_content);
-        movieDto.setM_id(m_id);
+        movieDto.setMWriter(mWriter);
+        movieDto.setMPoster(posterBytes);
+        movieDto.setMTitle(mTitle);
+        movieDto.setMYor(mYor);
+        movieDto.setMDirector(mDirector);
+        movieDto.setMActor(mActor);
+        movieDto.setMGenre(mGenre);
+        movieDto.setMSpo(is_spoiler);
+        movieDto.setMRating(mRating);
+        movieDto.setMContent(mContent);
+        movieDto.setMId(mId);
 
         mboardService.updateMovie(movieDto);
         return "redirect:/mboard/movie";
     }
-    @GetMapping("/movie/delete/{m_id}")
-    public String deleteMovie (@PathVariable int m_id) throws SQLException {
-        mboardService.deleteMovie(m_id);
+    @GetMapping("/movie/delete/{mId}")
+    public String deleteMovie (@PathVariable int mId) throws SQLException {
+        mboardService.deleteMovie(mId);
         return "redirect:/mboard/movie";
     }
 

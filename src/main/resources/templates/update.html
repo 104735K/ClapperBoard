@@ -21,19 +21,19 @@
     <div class="padding">
             <div class="padding0">
             <div class="padding1">
-                <input type="hidden" name ="user_id" th:value="${updatePost.user_id}">
-                <b>User Name</b><br>
-                <input type="text" name="user_name" class="textbox0" th:value="${updatePost.user_name}" readonly> <br>
+                <input type="hidden" name ="postId" th:value="${updatePost.postId}">
+                <b>Writer</b><br>
+                <input type="text" name="postWriter" class="textbox0" th:value="${updatePost.postWriter}" readonly> <br>
             </div>
             <div class="padding2">
                 <b>Pass</b><br>
-                <input type="password" name="password" id="user_pass" class="textbox0" oninput="removeWhitespace2(this)"><br>
+                <input type="password" name="password" id="postPass" class="textbox0" oninput="removeWhitespace2(this)"><br>
             </div>
             </div>
                 <b>Title</b><br>
-                <input type="text" name="title" class="textbox" th:value="${updatePost.title}" required oninput="removeWhitespace(this)"> <br>
+                <input type="text" name="postTitle" class="textbox" th:value="${updatePost.postTitle}" required oninput="removeWhitespace(this)"> <br>
                 <b>Content</b><br>
-                <textarea  type="text" wrap="hard" name="content" class="textarea" th:text="${updatePost.content}" required oninput="removeWhitespace(this)"></textarea>
+                <textarea  type="text" wrap="hard" name="postContent" class="textarea" th:text="${updatePost.postContent}" required oninput="removeWhitespace(this)"></textarea>
             </div>
         </div>
         <div class="bm">
@@ -49,8 +49,8 @@
         location.href = "/mboard/community";
     }
     const updatePost = () => {
-        const pass = /*[[${updatePost.user_pass}]]*/;
-        const inputPass = document.getElementById("user_pass").value;
+        const pass = /*[[${updatePost.postPass}]]*/;
+        const inputPass = document.getElementById("postPass").value;
         if (pass !== inputPass) {
             alert("비밀번호가 일치하지 않습니다.");
             return false;
