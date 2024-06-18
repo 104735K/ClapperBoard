@@ -56,7 +56,7 @@
             <td th:text="${comment.commentContent}" class="col3"></td>
             <td><button class="cbtn" onclick="openModal(this)">EDIT</button>
                 <input type="hidden" class="commentId" th:value="${comment.commentId}">
-                <input type="hidden" class="commentPass" th:value="${comment.commentPass}">
+                <input type="hidden" id="storedPassword" name="storedPassword" th:value="${comment.commentPass}">
                 <input type="hidden" class="commentWriter" th:value="${comment.commentWriter}">
                 <input type="hidden" class="commentContent" th:value="${comment.commentContent}">
             </td>
@@ -92,13 +92,14 @@
     <div class="modal2_body">
         <h2>EDIT</h2><br>
         <form th:action="@{/mboard/community/comment/update}" method="post" >
-            <input type="hidden" name="postId" th:value="${post.postId}">
             <div class="container1">
                 <div class="padding6">
                     <div class="padding7">
+                        <input type="hidden" name="postId" th:value="${post.postId}">
+                        <input type="hidden" id="commentId" name="commentId">
                         <input type="text" id="commentWriter" name="commentWriter" class="textbox1" readonly oninput="removeWhitespace(this)" >
-                        <input type="password" name="commentPass" placeholder="Pass"  class="textbox1" required oninput="removeWhitespace2(this)">
-                        <input class="btn" type="submit" value="UPDATE" onclick="updateComment()">
+                        <input type="password" id="inputPassword"  name="commentPass" placeholder="Pass"  class="textbox1" required oninput="removeWhitespace2(this)">
+                        <input class="btn" type="submit" value="UPDATE" onclick="return updateComment()">
                     </div>
                     <textarea type="text" id="commentContent" name="commentContent"  class="textarea" required oninput="removeWhitespace(this)"></textarea>
                 </div>
@@ -162,12 +163,13 @@
         var modal = document.getElementById("commentModal");
         modal.style.display = "flex";
 
+        var commentId = button.parentNode.querySelector('.commentId').value;
         var writer = button.parentNode.querySelector('.commentWriter').value;
         var content = button.parentNode.querySelector('.commentContent').value;
 
+        document.getElementById("commentId").value = commentId;
         document.getElementById("commentWriter").value = writer;
         document.getElementById("commentContent").value = content;
-
     }
 
     function closeCommentModal() {
@@ -176,11 +178,26 @@
     }
 
      const updateComment = () => {
-        var form = document.getElementById('updateComment');
-        form.submit();
+        var storedPassword = document.getElementById("storedPassword").value;
+        var inputPassword = document.getElementById("inputPassword").value;
+        if (storedPassword !== inputPassword) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return false;
+        } else {
+           return true;
+        }
     }
 
-    const commentDeleteReq = (button) => {
+    const commentDeleteReq = () => {
+        var storedPassword = document.getElementById("storedPassword").value;
+        var inputPassword = document.getElementById("inputPassword").value;
+        if (storedPassword !== inputPassword) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return false;
+        } else {
+            var commentId = document.getElementById("commentId").value;
+            location.href = "/mboard/community/comment/delete/" + commentId;
+        }
     }
 
 </script>

@@ -52,7 +52,7 @@ public class MboardController {
     }
 
     @GetMapping("/community/{postId}")
-    public String findById(@PathVariable int postId, Model model) throws SQLException {
+    public String findById(@PathVariable int postId, Model model,@ModelAttribute CommentDto commentDto) throws SQLException {
         Optional<PostDto> postDto = mboardService.getPostById(postId);
         if (postDto.isPresent()) {
             PostDto postDto1 = postDto.get();
@@ -60,9 +60,10 @@ public class MboardController {
             List<CommentDto> commentDtoList = commentService.getCommentsByPostId(postId);
             model.addAttribute("commentList", commentDtoList);
 
-            CommentDto commentDto = new CommentDto();
-            model.addAttribute("updateComment", commentDto);
-
+            List<CommentDto> commentDto1 = commentService.getCommentsByPostId(postId);
+            model.addAttribute("updateCommnet", commentDto1);
+            commentService.updateComment(commentDto);
+            commentService.deleteComment(commentDto.getCommentId());
         }
         return "detail";
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,8 +27,9 @@ public class CommentServicelmpl implements CommentService {
     }
 
     @Override
-    public void updateComment(CommentDto commentDto) throws SQLException {
+    public Optional<CommentDto> updateComment(CommentDto commentDto) throws SQLException {
         commentDao.updateComment(commentDto);
+        return null;
     }
 
     @Override

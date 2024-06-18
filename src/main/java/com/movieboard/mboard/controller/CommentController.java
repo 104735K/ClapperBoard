@@ -4,6 +4,7 @@ import com.movieboard.mboard.dao.CommentDao;
 import com.movieboard.mboard.dto.CommentDto;
 import com.movieboard.mboard.dto.PostDto;
 import com.movieboard.mboard.service.CommentService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,9 @@ public class CommentController {
 
     @GetMapping("/community/comment/update/{commentId}")
     public String updateForm(@PathVariable int commentId, Model model) throws SQLException {
-        Optional<CommentDto> commentDto = Optional.ofNullable(commentService.getCommentById(commentId));
-        commentDto.ifPresent(dto -> model.addAttribute("updateComment", dto));
-        return "detail";
+        CommentDto commentDto = commentService.getCommentById(commentId);
+        model.addAttribute("updateComment", commentDto);
+        return "editComment";
     }
 
     @PostMapping("/community/comment/update")
@@ -48,9 +49,9 @@ public class CommentController {
     }
 
     @GetMapping("/community/comment/delete/{commentId}")
-    public String deleteComment (@PathVariable int commentId) throws SQLException {
+    public String deleteComment (@PathVariable int commentId, HttpServletRequest request) throws SQLException {
         commentService.deleteComment(commentId);
-        return "redirect:/mboard/community/";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
-
 }
