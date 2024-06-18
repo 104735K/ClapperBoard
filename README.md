@@ -17,7 +17,17 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 사용자들은 자신이 좋아하는 영화를 추천하고, 리뷰를 작성할 수 있습니다.
 
 직접 영화에 평점을 주어 본인의 영화에 대한 시각과 의견을 공유할 수 있습니다.                    
-<br>
+
+## ⚙️ DEVELOPMENT ENVIRONMENT
+- JAVA 17
+- Framework : Spring Boot (version 3.2.5)
+- Database : MySQL (version 8.3.0) / MySQL Workbench 
+- Front : HTML/CSS, JavaScript
+- Intellij IDEA, GitHub
+
+## ✅ FEATURE
+- 기본 CRUD (작성, 조회, 수정, 삭제)
+- 영화의 평점 및 리뷰 작성
 
 ## 🗓️ DEVELOPMENT PERIOD
 2024.05.22 - 2024.06 ~ ing
@@ -31,17 +41,6 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 
 <영화추천게시글_예시>
 ![ClapperBoard_4](https://github.com/104735K/ClapperBoard/assets/170151340/5b69ac8f-744c-44e1-8e43-76c05b4dfefc)
-
-## ✅ FEATURE
-- 기본 CRUD (작성, 조회, 수정, 삭제)
-- 영화의 평점 및 리뷰 작성
-
-## ⚙️ DEVELOPMENT ENVIRONMENT
-- JAVA 17
-- Framework : Spring Boot (version 3.2.5)
-- Database : MySQL (version 8.3.0) / MySQL Workbench 
-- Front : HTML/CSS, JavaScript
-- Intellij IDEA, GitHub
 
 ## 📂 PROJECT STRUCTURE
 ```
@@ -67,10 +66,6 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 └── test
 
 ```
-## 👩🏻‍💻 DEVELOPER
-팀장 및 팀원 : 강성현
-
-총 1명
 
 ## 📋 PLAN
 - Comment, Paging
