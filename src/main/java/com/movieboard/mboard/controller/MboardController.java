@@ -56,9 +56,13 @@ public class MboardController {
         Optional<PostDto> postDto = mboardService.getPostById(postId);
         if (postDto.isPresent()) {
             PostDto postDto1 = postDto.get();
-            List<CommentDto> comments = commentService.getCommentsByPostId(postId);
-            postDto1.setPostComment(comments);
             model.addAttribute("post", postDto1);
+            List<CommentDto> commentDtoList = commentService.getCommentsByPostId(postId);
+            model.addAttribute("commentList", commentDtoList);
+
+            CommentDto commentDto = new CommentDto();
+            model.addAttribute("updateComment", commentDto);
+
         }
         return "detail";
     }

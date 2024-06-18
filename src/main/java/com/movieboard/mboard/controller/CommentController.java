@@ -2,6 +2,7 @@ package com.movieboard.mboard.controller;
 
 import com.movieboard.mboard.dao.CommentDao;
 import com.movieboard.mboard.dto.CommentDto;
+import com.movieboard.mboard.dto.PostDto;
 import com.movieboard.mboard.service.CommentService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/mboard")
@@ -31,4 +33,24 @@ public class CommentController {
         commentService.save(commentDto);
         return "redirect:/mboard/community/" + postId;
     }
+
+    @GetMapping("/community/comment/update/{commentId}")
+    public String updateForm(@PathVariable int commentId, Model model) throws SQLException {
+        Optional<CommentDto> commentDto = Optional.ofNullable(commentService.getCommentById(commentId));
+        commentDto.ifPresent(dto -> model.addAttribute("updateComment", dto));
+        return "detail";
+    }
+
+    @PostMapping("/community/comment/update")
+    public String updateComment(@ModelAttribute CommentDto commentDto) throws SQLException {
+        commentService.updateComment(commentDto);
+        return "redirect:/mboard/community/" + commentDto.getPostId();
+    }
+
+    @GetMapping("/community/comment/delete/{commentId}")
+    public String deleteComment (@PathVariable int commentId) throws SQLException {
+        commentService.deleteComment(commentId);
+        return "redirect:/mboard/community/";
+    }
+
 }

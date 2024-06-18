@@ -10,6 +10,7 @@ public class CommentDto {
     private int commentId;
     private int parentCommentId;
     private String commentWriter;
+    private String commentPass;
     private String commentContent;
     private int postId;
 }

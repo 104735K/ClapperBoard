@@ -17,5 +17,4 @@ public class PostDto {
     private String postPass;
     private String postTitle;
     private String postContent;
-    private List<CommentDto> postComment;
 }

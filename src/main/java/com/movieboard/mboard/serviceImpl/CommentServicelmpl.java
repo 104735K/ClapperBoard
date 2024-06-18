@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CommentServicelmpl implements CommentService {
@@ -25,7 +26,17 @@ public class CommentServicelmpl implements CommentService {
     }
 
     @Override
+    public void updateComment(CommentDto commentDto) throws SQLException {
+        commentDao.updateComment(commentDto);
+    }
+
+    @Override
     public void deleteComment(int commentId) throws SQLException {
         commentDao.deleteComment(commentId);
+    }
+
+    @Override
+    public CommentDto getCommentById(int commentId) throws SQLException {
+        return commentDao.getCommentById(commentId);
     }
 }

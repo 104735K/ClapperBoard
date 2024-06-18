@@ -84,12 +84,12 @@
 </div>
 <div class="bm2"></div>
 
-<div class="modal">
+<div class="modal" id="modal">
     <div class="modal_body">
         <h2> 비밀번호를 입력해 주세요.</h2><br>
         <input type="password" name="password" id="mPass" class="textbox0" oninput="removeWhitespace2(this)">
         <p>※ 한번 삭제된 게시글은 되돌릴 수 없습니다 ※</p>
-        <button  class="btn4" onclick="cancelReq()">CANCEL</button>
+        <button  class="btn4" onclick="closeModal()">CANCEL</button>
         <button class="btn3" onclick="return deleteReq()">DELETE</button>
     </div>
 </div>
@@ -127,10 +127,7 @@
         const id = [[${movie.mId}]];
         location.href = "/mboard/movie/update/" + id;
     }
-    const cancelReq = () => {
-        console.log("취소 요청");
-        location.href = "/mboard/movie";
-    }
+
     const deleteReq = () => {
         console.log("삭제 요청");
         const id = [[${movie.mId}]];
@@ -150,6 +147,11 @@
     btnOpenModal.addEventListener("click", ()=>{
     modal.style.display="flex";
     });
+
+    function closeModal() {
+      var modal = document.getElementById('modal');
+      modal.style.display = 'none';
+    }
 
     function removeWhitespace2(input) {
     input.value = input.value.trim();

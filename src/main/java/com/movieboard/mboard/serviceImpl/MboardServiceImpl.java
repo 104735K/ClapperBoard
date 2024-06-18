@@ -38,22 +38,13 @@ public  class MboardServiceImpl implements MboardService {
     @Override
     public Optional<PostDto> getPostById(int postId) {
         try {
-            Optional<PostDto> optionalPostDto = postDao.getPostById(postId);
-            optionalPostDto.ifPresent(postDto -> {
-                try {
-                    List<CommentDto> comments = commentService.getCommentsByPostId(postId);
-                    postDto.setPostComment(comments);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            });
-            return optionalPostDto;
+            return postDao.getPostById(postId);
         } catch (SQLException e) {
             e.printStackTrace();
             return Optional.empty();
         }
     }
-    
+
     @Override
     public void updatePost(PostDto postDto) throws SQLException {
         postDao.updatePost(postDto);

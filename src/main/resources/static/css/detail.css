@@ -42,8 +42,31 @@ a:hover{color:#cc1010;}
 .textbox0 {width:250px; margin:5px auto; font-size:13px; text-align:center;border-radius: 20px; border: 1px solid #ccc; padding: 5px;font-family: 'S-CoreDream-3Light';}
 p {font-size:10px;margin:30px 0 30px 0;}
 
-.btn3{width:100px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:10px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
-.btn3:hover {background-color:transparent; color:#cc1010; border: 1px solid black; font-size:10px; border-radius:50px;}
-.btn4{width:100px; height:25px; background-color:transparent; color:black; border: 1px solid black; font-size:10px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: "Poetsen One", sans-serif;}
-.btn4:hover {background-color:transparent; color:#0444d9; border: 1px solid black; font-size:10px; border-radius:50px;}
+.btn3{width:100px; height:25px; background-color:transparent; color:black; border: 1px solid #ccc; font-size:10px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px; font-family: 'S-CoreDream-3Light', sans-serif;}
+.btn3:hover {background-color:transparent; color:#cc1010; border: 1px solid #ccc; font-size:10px; border-radius:50px;}
+.btn4{width:100px; height:25px; background-color:transparent; color:black; border: 1px solid #ccc; font-size:10px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px; font-family: 'S-CoreDream-3Light', sans-serif;}
+.btn4:hover {background-color:transparent; color:#0444d9; border: 1px solid #ccc; font-size:10px; border-radius:50px;}
 
+.header1{font-size:20px;font-family: "Poetsen One", sans-serif; text-align:center;}
+
+.textbox1 {width:100px; margin:5px auto; font-size:13px; text-align:center; border-radius: 20px; border: 1px solid #ccc; padding:5px; font-family: 'S-CoreDream-3Light';}
+.textarea {width:600px; height:50px; margin:5px auto; font-size:13px; border-radius: 20px; border: 1px solid #ccc; padding: 5px;font-family: 'S-CoreDream-3Light';}
+
+.btn{width:100px; height:25px; background-color:transparent; color:black; border: 1px solid #ccc; font-size:12px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: 'S-CoreDream-3Light'}
+.btn:hover {background-color:transparent; color:#0444d9; border: 1px solid #ccc; font-size:12px; border-radius:50px;font-family: 'S-CoreDream-3Light'}
+
+.container1{display: flex;justify-content: center;align-items: center; height: 200px; font-size:15px; font-family: 'S-CoreDream-3Light';}
+.padding6{padding : 10px; width:700px; height:150px; box-sizing: border-box; border: 1px solid #ccc; border-radius:20px; text-align:center; }
+
+.padding7{padding : 10px; width:350px; height:30px; border:none; border-radius:20px; margin:0 0 0 18px;}
+
+table{width:700px; margin:auto; text-align:left; font-size:12px; border: 1px solid #ccc; font-family: 'S-CoreDream-3Light'; border-radius:20px; }
+td{padding:5px;}
+.col1 {width: 10px; text-align:center;}
+.col2 {width: 70px; text-align:center;}
+.col3 {width: 500px;}
+
+.cbtn{width:50px; height:20px; background-color:transparent; color:black; border: 1px solid #ccc; font-size:10px; border-radius:50px; text-align:center;transition: color 0.3s; margin-right:5px;font-family: 'S-CoreDream-3Light';}
+.cbtn:hover {background-color:transparent; color:green; border: 1px solid #ccc; font-size:10px; border-radius:50px;}
+
+.modal2_body {position:absolute; top:50%; width:700px; height:300px; padding:40px; text-align:center; background-color:white; border-radius:20px; transform:translateY(-50%); font-family: 'S-CoreDream-3Light'; font-size:10px;}
