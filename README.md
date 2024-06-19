@@ -27,7 +27,7 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 
 ## ✅ FEATURE
 - 기본 CRUD (작성, 조회, 수정, 삭제)
-- 게시글의 댓글 작성
+- 게시글의 댓글 및 대댓글 
 - 영화의 평점 및 리뷰 작성
 
 ## 🗓️ DEVELOPMENT PERIOD
@@ -42,6 +42,8 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 
 <영화추천게시글_예시>
 ![ClapperBoard_4](https://github.com/104735K/ClapperBoard/assets/170151340/5b69ac8f-744c-44e1-8e43-76c05b4dfefc)
+<댓글 및 대댓글>
+<img width="1666" alt="ClapperBoard_5" src="https://github.com/104735K/ClapperBoard/assets/170151340/7a7c03e4-1bdf-4a2b-8755-7b3858982678">
 
 ## 📂 PROJECT STRUCTURE
 ```
@@ -72,4 +74,4 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 - Paging
 - Movie rankings : 영화진흥위원회API를 활용하여 영화순위 구현
 - Movie reservation : 현재 사용자의 위치를 기반으로 주변 영화관의 위치 및 예매링크 제공
-- Notice 및 QnA : 관리자페이지 생성 및 notice는 사용자에게 조회만 가능하게 구현
+- Notice 및 QnA : 관리자페이지 생성
