@@ -54,4 +54,22 @@ public class CommentController {
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
+
+    @GetMapping("/community/reply/{postId}")
+    public String replies(Model model, @PathVariable int postId) throws SQLException {
+        List<CommentDto> replies = commentService.getReplyCommentsByParentId(postId);
+        model.addAttribute("reply", replies);
+        return "detail";
+    }
+    @PostMapping("/community/comment/reply/{postId}")
+    public String replyComment(@ModelAttribute CommentDto commentDto, @RequestParam int postId) throws SQLException {
+        try {
+            commentDto.setPostId(postId);
+            commentService.createReplyComment(commentDto);
+            return "redirect:/mboard/community/" + postId;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return "error";
+        }
+    }
 }

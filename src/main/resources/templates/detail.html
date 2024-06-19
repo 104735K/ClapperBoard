@@ -48,41 +48,67 @@
 <div class="header1">
     <h4>COMMENTS</h4>
 </div>
-<div>
-    <table>
-        <tr th:each="comment:${commentList}">
-            <td th:text="${comment.commentId}" class="col1"></td>
-            <td th:text="${comment.commentWriter}" class="col2"></td>
-            <td th:text="${comment.commentContent}" class="col3"></td>
-            <td><button class="cbtn" onclick="openModal(this)">EDIT</button>
+<div class="container2">
+    <ul class="padding8">
+        <li th:if="${commentList.isEmpty()}">
+            <p class="p3">※ 작성된 댓글이 존재하지 않습니다 ※</p>
+        </li>
+        <li th:each="comment:${commentList}" th:if="${comment.parentCommentId} == 0">
+            <span th:text="${comment.commentId}" class="span1"></span>
+            <span th:text="${comment.commentWriter}" ></span>
+            <span><button class="cbtn" onclick="openReply(this)">REPLY</button>
+                <input type="hidden" class="commentId" th:value="${comment.commentId}">
+            </span>
+            <span><button class="cbtn" onclick="openModal(this)">EDIT</button>
                 <input type="hidden" class="commentId" th:value="${comment.commentId}">
                 <input type="hidden" id="storedPassword" name="storedPassword" th:value="${comment.commentPass}">
                 <input type="hidden" class="commentWriter" th:value="${comment.commentWriter}">
                 <input type="hidden" class="commentContent" th:value="${comment.commentContent}">
-            </td>
-        </tr>
-    </table>
+            </span>
+            <br>
+            <span th:text="${comment.commentContent}" class="span1 span2"></span>
+            <br>
+            <hr>
+            <ul th:each="reply : ${commentList}" th:if="${reply.parentCommentId} == ${comment.commentId}">
+                <li>
+                    <span th:text="${reply.commentId}" class="span1"></span>
+                    <span th:text="${reply.commentWriter}"></span>
+                        <input type="hidden" class="commentId" th:value="${reply.commentId}">
+                    </span>
+                    <span><button class="cbtn" onclick="openModal(this)">EDIT</button>
+                        <input type="hidden" class="commentId" th:value="${reply.commentId}">
+                        <input type="hidden" class="commentWriter" th:value="${reply.commentWriter}">
+                        <input type="hidden" class="commentContent" th:value="${reply.commentContent}">
+                    </span>
+                    <br>
+                    <p class="p2">@[[${comment.commentWriter}]] <span th:text="${reply.commentContent}" class="span2 span3"></span></p>
+                    <hr>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
-
-<form action="/mboard/community/${post.postId}" method="post">
-    <input type="hidden" name="postId" th:value="${post.postId}">
-    <div class="container1">
-    <div class="padding6">
-        <div class="padding7">
-            <input type="text" name="commentWriter" placeholder="Writer"  class="textbox1" required oninput="removeWhitespace(this)" >
-            <input type="password" name="commentPass" placeholder="Pass"  class="textbox1" required oninput="removeWhitespace2(this)">
-            <input class="btn" type="submit" value="SAVE">
+<div class="bottom">
+    <form action="/mboard/community/${post.postId}" method="post">
+        <input type="hidden" name="postId" th:value="${post.postId}">
+        <div class="container1">
+        <div class="padding9">
+            <div class="padding7">
+                <input type="text" name="commentWriter" placeholder="Writer"  class="textbox1" required oninput="removeWhitespace(this)" >
+                <input type="password" name="commentPass" placeholder="Pass"  class="textbox1" required oninput="removeWhitespace2(this)">
+                <input class="btn" type="submit" value="SAVE">
+            </div>
+            <textarea type="text" name="commentContent" placeholder="Content" class="textarea"  required oninput="removeWhitespace(this)"></textarea>
         </div>
-        <textarea type="text" name="commentContent" placeholder="Content" class="textarea"  required oninput="removeWhitespace(this)"></textarea>
-    </div>
-    </div>
-</form>
+        </div>
+    </form>
+</div>
 
 <div class="modal" id="modal">
     <div class="modal_body">
         <h2> 비밀번호를 입력해 주세요.</h2><br>
         <input type="password" name="password" id="postPass" class="textbox0" oninput="removeWhitespace2(this)">
-        <p>※ 한번 삭제된 게시글은 되돌릴 수 없습니다 ※</p>
+        <p class="p1">※ 한번 삭제된 게시글은 되돌릴 수 없습니다 ※</p>
         <button  class="btn4" onclick="closeModal()">CANCEL</button>
         <button class="btn3" onclick="return deleteReq()">DELETE</button>
     </div>
@@ -107,7 +133,29 @@
         </form>
         <button class="btn" onclick="closeCommentModal()">CANCEL</button>
         <button class="btn" onclick="commentDeleteReq()">DELETE</button>
-        <p>※ 한번 삭제된 댓글은 되돌릴 수 없습니다 ※</p>
+        <p class="p1">※ 한번 삭제된 댓글은 되돌릴 수 없습니다 ※</p>
+    </div>
+</div>
+
+
+<div id="replyModal" class="modal">
+    <div class="modal2_body">
+        <h2>REPLY</h2><br>
+        <form action="/mboard/community/comment/reply/${post.postId}" method="post" >
+            <div class="container1">
+                <div class="padding6">
+                    <div class="padding7">
+                        <input type="hidden" name="postId" th:value="${post.postId}">
+                        <input type="hidden" id="parentCommentId" name="parentCommentId">
+                        <input type="text" name="commentWriter" placeholder="Writer"  class="textbox1" required oninput="removeWhitespace(this)" >
+                        <input type="password" name="commentPass" placeholder="Pass"  class="textbox1" required oninput="removeWhitespace2(this)">
+                        <input class="btn" type="submit" value="SAVE">
+                    </div>
+                    <textarea type="text" name="commentContent" placeholder="Content" class="textarea"  required oninput="removeWhitespace(this)"></textarea>
+                </div>
+            </div>
+        </form>
+        <button class="btn" onclick="closeReplyModal()">CANCEL</button>
     </div>
 </div>
 
@@ -173,8 +221,21 @@
     }
 
     function closeCommentModal() {
-      var modal = document.getElementById('commentModal');
-      modal.style.display = 'none';
+        var modal = document.getElementById('commentModal');
+        modal.style.display = 'none';
+    }
+
+    function openReply(button) {
+        var modal = document.getElementById("replyModal");
+        modal.style.display = "flex";
+
+        var commentId = button.parentNode.querySelector('.commentId').value;
+        document.getElementById("parentCommentId").value = commentId;
+    }
+
+    function closeReplyModal() {
+        var modal = document.getElementById('replyModal');
+        modal.style.display = 'none';
     }
 
      const updateComment = () => {

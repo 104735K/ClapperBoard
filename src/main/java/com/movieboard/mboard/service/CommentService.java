@@ -12,5 +12,6 @@ public interface CommentService {
     Optional<CommentDto> updateComment(CommentDto commentDto) throws SQLException;
     void deleteComment(int commentId) throws SQLException;
     CommentDto getCommentById(int commentId) throws SQLException;
-
+    void createReplyComment (CommentDto commentDto) throws SQLException;
+    List<CommentDto> getReplyCommentsByParentId(int parentCommentId) throws SQLException;
 }

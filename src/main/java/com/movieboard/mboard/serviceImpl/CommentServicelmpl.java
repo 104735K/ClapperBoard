@@ -41,4 +41,14 @@ public class CommentServicelmpl implements CommentService {
     public CommentDto getCommentById(int commentId) throws SQLException {
         return commentDao.getCommentById(commentId);
     }
+
+    @Override
+    public void createReplyComment(CommentDto commentDto) throws SQLException {
+        commentDao.createReplyComment(commentDto);
+    }
+
+    @Override
+    public List<CommentDto> getReplyCommentsByParentId(int parentCommentId) throws SQLException {
+        return commentDao.getReplyCommentByParentId(parentCommentId);
+    }
 }

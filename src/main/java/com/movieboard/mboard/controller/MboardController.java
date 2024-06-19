@@ -59,11 +59,6 @@ public class MboardController {
             model.addAttribute("post", postDto1);
             List<CommentDto> commentDtoList = commentService.getCommentsByPostId(postId);
             model.addAttribute("commentList", commentDtoList);
-
-            List<CommentDto> commentDto1 = commentService.getCommentsByPostId(postId);
-            model.addAttribute("updateCommnet", commentDto1);
-            commentService.updateComment(commentDto);
-            commentService.deleteComment(commentDto.getCommentId());
         }
         return "detail";
     }

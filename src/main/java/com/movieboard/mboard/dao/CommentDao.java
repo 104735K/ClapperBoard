@@ -42,6 +42,7 @@ public class CommentDao {
                 while (resultSet.next()) {
                     CommentDto commentDto = new CommentDto();
                     commentDto.setCommentId(resultSet.getInt("commentId"));
+                    commentDto.setParentCommentId(resultSet.getInt("parentCommentId"));
                     commentDto.setPostId(resultSet.getInt("postId"));
                     commentDto.setCommentWriter(resultSet.getString("commentWriter"));
                     commentDto.setCommentPass(resultSet.getString("commentPass"));
@@ -89,6 +90,39 @@ public class CommentDao {
             }
         }
         return (CommentDto) commentDtoList;
+    }
+
+    public void createReplyComment(CommentDto commentDto) throws SQLException {
+        String query = "INSERT INTO comments (postId, parentCommentId, commentWriter, commentPass, commentContent) VALUES (?,?,?,?,?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1,commentDto.getPostId());
+            preparedStatement.setInt(2,commentDto.getParentCommentId());
+            preparedStatement.setString(3,commentDto.getCommentWriter());
+            preparedStatement.setString(4,commentDto.getCommentPass());
+            preparedStatement.setString(5,commentDto.getCommentContent());
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public List<CommentDto> getReplyCommentByParentId(int parentCommentId) throws SQLException {
+        List<CommentDto> replyDtoList = new ArrayList<>();
+        String query = "SELECT * FROM comments WHERE parentCommentId=?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, parentCommentId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    CommentDto commentDto = new CommentDto();
+                    commentDto.setPostId(resultSet.getInt("postId"));
+                    commentDto.setCommentId(resultSet.getInt("commentId"));
+                    commentDto.setParentCommentId(resultSet.getInt("parentCommentId"));
+                    commentDto.setCommentWriter(resultSet.getString("commentWriter"));
+                    commentDto.setCommentPass(resultSet.getString("commentPass"));
+                    commentDto.setCommentContent(resultSet.getString("commentContent"));
+                    replyDtoList.add(commentDto);
+                }
+            }
+        }
+        return replyDtoList;
     }
 }
 
