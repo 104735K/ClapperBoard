@@ -116,7 +116,7 @@
 
 <div id="commentModal" class="modal">
     <div class="modal2_body">
-        <h2>EDIT</h2><br>
+        <h2 class="modalHeader">EDIT</h2>
         <form th:action="@{/mboard/community/comment/update}" method="post" >
             <div class="container1">
                 <div class="padding6">
@@ -139,8 +139,8 @@
 
 
 <div id="replyModal" class="modal">
-    <div class="modal2_body">
-        <h2>REPLY</h2><br>
+    <div class="modal3_body">
+        <h2 class="modalHeader">REPLY</h2>
         <form action="/mboard/community/comment/reply/${post.postId}" method="post" >
             <div class="container1">
                 <div class="padding6">
