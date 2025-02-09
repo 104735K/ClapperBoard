@@ -1,4 +1,6 @@
 # Clapper Board
+![ClapperBoard_1](https://github.com/104735K/ClapperBoard/assets/170151340/de87d966-1db2-4ed6-9c72-396094d9cace)
+
 JAVA + Spring Boot JDBC게시판 입니다.
 
 ## 💻 PROJECT INTRODUCTION
@@ -34,16 +36,16 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 2024.05.22 - 2024.06 ~ ing
 
 ## 📑 DEMO
-<메인페이지>
-![ClapperBoard_1](https://github.com/104735K/ClapperBoard/assets/170151340/de87d966-1db2-4ed6-9c72-396094d9cace)
-<자유게시판 및 영화추천게시판>
-![ClapperBoard_2](https://github.com/104735K/ClapperBoard/assets/170151340/63e793b1-ef1e-4c03-b4d9-8322295ba89e) |![ClapperBoard_3](https://github.com/104735K/ClapperBoard/assets/170151340/ee6324a3-9587-45c5-b66d-76ac392aba28)
---- | --- | 
 
-<영화추천게시글_예시>
-![ClapperBoard_4](https://github.com/104735K/ClapperBoard/assets/170151340/5b69ac8f-744c-44e1-8e43-76c05b4dfefc)
-<댓글 및 대댓글>
-<img width="1666" alt="ClapperBoard_5" src="https://github.com/104735K/ClapperBoard/assets/170151340/7a7c03e4-1bdf-4a2b-8755-7b3858982678">
+|                               메인 페이지                               |                                자유게시판                             |                               영화추천게시판                               |
+| :---------------------------------------------------------------------: | :---------------------------------------------------------------------: |:---------------------------------------------------------------------: |
+|![ClapperBoard_1](https://github.com/104735K/ClapperBoard/assets/170151340/de87d966-1db2-4ed6-9c72-396094d9cace)|![ClapperBoard_2](https://github.com/104735K/ClapperBoard/assets/170151340/63e793b1-ef1e-4c03-b4d9-8322295ba89e) | ![ClapperBoard_3](https://github.com/104735K/ClapperBoard/assets/170151340/ee6324a3-9587-45c5-b66d-76ac392aba28)|
+
+|                               영화리뷰 상세 페이지                               |                                댓글 및 대댓글                             |                  
+| :---------------------------------------------------------------------: | :---------------------------------------------------------------------: |
+|![ClapperBoard_4](https://github.com/104735K/ClapperBoard/assets/170151340/5b69ac8f-744c-44e1-8e43-76c05b4dfefc)|![ClapperBoard_4](https://github.com/104735K/ClapperBoard/assets/170151340/7a7c03e4-1bdf-4a2b-8755-7b3858982678)| 
+
+
 
 ## 📂 PROJECT STRUCTURE
 ```
