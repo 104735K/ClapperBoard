@@ -27,7 +27,7 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 - Front : HTML/CSS, JavaScript
 - Intellij IDEA, GitHub
 
-## ✅ FEATURE
+## 💡 FEATURE
 - 기본 CRUD (작성, 조회, 수정, 삭제)
 - 게시글의 댓글 및 대댓글 
 - 영화의 평점 및 리뷰 작성
