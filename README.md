@@ -69,9 +69,3 @@ Clapper Board는 영화를 좋아하는 이들을 위한 공간으로, 다양한
 └── test
 
 ```
-
-## 📋 PLAN
-- Paging
-- Movie rankings : 영화진흥위원회API를 활용하여 영화순위 구현
-- Movie reservation : 현재 사용자의 위치를 기반으로 주변 영화관의 위치 및 예매링크 제공
-- Notice 및 QnA : 관리자페이지 생성
